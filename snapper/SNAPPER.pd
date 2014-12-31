@@ -1,0 +1,62 @@
+#N canvas 313 107 901 615 10;
+#X obj 669 52 cnv 15 201 497 empty empty empty 20 12 0 14 -99865 -66577
+0;
+#X obj 704 128 vsl 40 380 0 0.9 0 0 k-mastervol k-mastervol-gui empty
+0 -9 0 10 -4034 -1 -1 33800 1;
+#X obj 799 412 vu 15 120 pvu-R empty -1 -8 0 10 -66577 -1 1 0;
+#X obj 782 412 vu 15 120 pvu-L empty -1 -8 0 10 -66577 -1 0 0;
+#X obj 31 140 vsl 40 400 10 1 0 0 k-density k-density-gui empty 0 -9
+0 10 -232576 -1 -1 39900 1;
+#X obj 258 52 hradio 50 1 0 3 k-soundbank k-soundbank-gui empty 0 -8
+0 10 -261234 -1 -1 2;
+#X obj 119 140 vsl 40 400 0 0.95 0 0 k-ringmod k-ringmod-gui empty
+0 -9 0 10 -203904 -1 -1 0 1;
+#X obj 206 141 vradio 68 1 0 6 k-echotime k-echotime-gui empty 0 -8
+0 10 -204800 -1 -1 5;
+#X obj 313 140 vsl 40 400 0 0.95 0 0 k-echofeedback k-echofeedback-gui
+empty 0 -9 0 10 -204800 -1 -1 34000 1;
+#X obj 401 140 vsl 40 400 800 8000 0 0 k-filter k-filter-gui empty
+0 -9 0 10 -204786 -1 -1 39900 1;
+#X obj 490 140 vsl 40 400 16 1 0 0 k-bitcrush k-bitcrush-gui empty
+0 -9 0 10 -261682 -1 -1 0 1;
+#X obj 578 140 vsl 40 400 0 1 0 0 k-revmix k-revmix-gui empty 0 -9
+0 10 -262130 -1 -1 0 1;
+#X obj 442 52 hradio 50 1 0 4 k-harmony k-harmony-gui empty 0 -8 0
+10 -232576 -1 -1 3;
+#X obj 30 52 hradio 50 1 0 4 k-tempo k-tempo-gui empty 0 -8 0 10 -204786
+-1 -1 2;
+#X obj 774 325 tgl 50 0 k-metro k-metro-gui empty 17 7 0 10 -4034 -1
+-1 1 1;
+#X obj 686 59 nbx 3 50 0 999 0 0 empty countdown empty 0 -8 0 48 -1
+-258113 -1 0 256;
+#X obj 771 161 bng 70 250 50 0 k-broadcast k-broadcast-gui empty 17
+7 0 10 -24198 -1 -262144;
+#X obj 847 62 tgl 15 0 empty connected empty 17 7 0 10 -258113 -262144
+-1 1 1;
+#X text 29 33 TEMPO;
+#X text 260 33 SOUNDBANK;
+#X text 443 33 HARMONY;
+#X text 107 120 PITCHINESS;
+#X text 206 120 ECHO LENGTH;
+#X text 307 120 ECHO AMT;
+#X text 400 120 FILTER;
+#X text 680 107 COUNTDOWN UNTIL ELIGIBILITY;
+#X text 773 234 BROADCAST!;
+#X text 693 517 MASTER VOL;
+#X text 771 305 METRONOME;
+#X text 700 31 SNAPPER by Joel Matthys;
+#N canvas 411 167 506 137 fine-tune 0;
+#X obj 39 60 hsl 400 30 0 130 0 0 k-finetune empty empty -2 -8 0 10
+-99865 -262144 -1 0 1;
+#X text 89 26 FINE TUNE TIMING - drag to alter beat placement;
+#X restore 663 565 pd fine-tune;
+#X text 212 165 sixteenth;
+#X text 221 233 eighth;
+#X text 220 302 quarter;
+#X text 225 373 half;
+#X text 221 437 1 bar;
+#X text 220 503 2 bars;
+#X obj 747 565 internals/load-samples;
+#X text 484 120 BITCRUSH;
+#X text 577 120 REVERB;
+#X text 28 120 DENSITY;

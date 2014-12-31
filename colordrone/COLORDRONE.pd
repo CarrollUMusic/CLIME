@@ -1,14 +1,14 @@
 #N canvas 0 55 1280 743 10;
 #X declare -path internals;
 #X obj 1 -1 cnv 15 1280 840 empty color-background empty 20 12 0 14
--233479 -262144 0;
+-184339 -262144 0;
 #X obj 8 31 vsl 15 600 0 127 0 0 mod mod-gui mod 0 -9 0 10 -262144
--1 -1 54000 1;
+-1 -1 42600 1;
 #X obj 8 641 bng 15 250 50 0 load load-gui empty 17 7 0 10 -262144
 -1 -1;
 #X obj 1243 30 vsl 15 600 0 1 0 0 mastervol mastervol-gui vol 0 -9
 0 10 -1 -262144 -1 59900 1;
-#N canvas 1 77 450 300 internals 0;
+#N canvas 1 89 450 300 internals 0;
 #X obj 57 30 declare -path internals;
 #X obj 59 58 nanokontrol;
 #X obj 59 86 color-canvas;
@@ -18,13 +18,13 @@
 #X obj 264 175 s mastervol-gui;
 #X obj 263 105 r /nanoKontrol/r/1;
 #X obj 263 128 s load-gui;
-#N canvas 567 184 456 414 audio-internals 0;
+#N canvas 561 193 456 414 audio-internals 0;
 #X obj 61 48 readsf~;
 #X obj 193 11 r load;
 #X obj 194 36 openpanel;
 #X obj 194 63 symbol;
 #X obj 65 86 *~;
-#X obj 122 117 r mod;
+#X obj 321 58 r mod;
 #X obj 99 89 osc~;
 #X msg 121 173 \$1 5000;
 #X obj 123 197 line~;
@@ -80,7 +80,7 @@
 #X connect 23 1 9 3;
 #X restore 61 162 pd audio-internals;
 #X obj 263 211 loadbang;
-#X msg 263 236 \; pd dsp 1;
+#X msg 263 236 \; pd dsp 1 \; mod-gui 0;
 #X connect 3 0 4 0;
 #X connect 5 0 6 0;
 #X connect 7 0 8 0;

@@ -1,18 +1,18 @@
-#N canvas 721 96 476 343 10;
-#X declare -path SyncJams/pure-data;
-#N canvas 1 74 450 300 metronome 0;
-#X obj 63 250 declare -path SyncJams/pure-data;
+#N canvas 719 99 476 343 10;
+#X declare -path ../SyncJams/pure-data;
+#N canvas 1 77 450 300 metronome 0;
 #X obj 150 134 syncjams;
 #X obj 150 159 route tick;
 #X msg 150 110 set-state /BPM \$1;
 #X obj 150 184 s \$0-tick;
 #X obj 150 61 r bpm;
 #X obj 150 85 int;
-#X connect 1 0 2 0;
-#X connect 2 0 4 0;
-#X connect 3 0 1 0;
-#X connect 5 0 6 0;
-#X connect 6 0 3 0;
+#X obj 63 250 declare -path ../SyncJams/pure-data;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 2 0 0 0;
+#X connect 4 0 5 0;
+#X connect 5 0 2 0;
 #X restore 222 90 pd metronome;
 #N canvas 500 184 732 519 networking 0;
 #X obj 146 147 netsend;
@@ -112,14 +112,14 @@ density-\$1-gui set \$4;
 #X obj 32 28 bng 50 250 50 0 unmute empty empty 17 7 0 10 -4034 -1
 -1;
 #X obj 403 53 vradio 15 1 0 6 section section-gui section 0 -8 0 10
--262144 -1 -1 1;
+-262144 -1 -1 0;
 #N canvas 1 59 450 300 setup 0;
 #X obj 81 34 loadbang;
 #X msg 85 63 \; section-gui 0 \; bpm-gui 180;
 #X connect 0 0 1 0;
 #X restore 222 63 pd setup;
 #X obj 178 20 vsl 15 128 88 480 0 0 bpm bpm-gui empty 0 -9 0 10 -262144
--1 -1 8229 1;
+-1 -1 2981 1;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array tempo-graph 5000 float 1;
 #A 0 272.8 266.64 266.08 265.52 264.96 264.4 263.84 263.28 262.72 262.16

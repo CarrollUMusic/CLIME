@@ -1,6 +1,15 @@
-#N canvas 159 243 1116 239 10;
+#N canvas 155 249 1116 239 10;
 #X declare -path SyncJams/pure-data;
+#X declare -lib iemlib2;
+#X declare -lib iemlib2;
+#X declare -lib iemlib2;
+#X declare -lib iemlib2;
+#X declare -lib iemlib2;
+#X declare -lib iemlib2;
+#X declare -lib iemlib2;
+#X declare -lib iemlib2;
 #X declare -path internals;
+#X declare -path ../SyncJams/pure-data;
 #X obj 513 403 declare -path SyncJams/pure-data;
 #X obj 513 381 syncjams CLIMEjam \, bpm 104 \, namespace CLIME;
 #X msg 717 426 \; pd dsp 1;
@@ -31,6 +40,7 @@
 #X msg 361 361 set-state /BPM 140;
 #X msg 361 382 set-state /BPM 104;
 #X obj 512 446 declare -path internals;
+#X obj 512 470 declare -path ../SyncJams/pure-data;
 #X connect 3 0 2 0;
 #X connect 4 0 17 0;
 #X connect 6 0 13 0;

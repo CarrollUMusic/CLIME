@@ -1,4 +1,5 @@
-#N canvas 131 112 835 534 10;
+#N canvas 125 121 835 534 10;
+#X declare -path ../SyncJams/pure-data;
 #N canvas 299 192 450 300 echo 0;
 #X obj 59 13 inlet~;
 #X obj 47 207 outlet~;
@@ -307,7 +308,7 @@ kitch\$1 \, read -resize berk/\$1.wav berk\$1, f 62;
 #X connect 5 0 2 1;
 #X restore 387 374 pd filter;
 #X obj 83 10 loadbang;
-#N canvas 342 300 384 250 metronome 0;
+#N canvas 336 309 384 250 metronome 0;
 #X obj 90 54 inlet;
 #X obj 40 218 s \$0-metro;
 #X obj 128 54 inlet;
@@ -320,8 +321,8 @@ kitch\$1 \, read -resize berk/\$1.wav berk\$1, f 62;
 #X obj 128 75 t b f;
 #X obj 128 117 -;
 #X msg 128 96 4;
-#X obj 18 17 SyncJams/pure-data/syncjams \$0/CLIME \, bpm 480 \, namespace
-CLIME;
+#X obj 18 17 syncjams \$0/CLIME \, bpm 480 \, namespace CLIME;
+#X obj 230 108 declare -path ../SyncJams/pure-data;
 #X connect 0 0 8 1;
 #X connect 2 0 9 0;
 #X connect 3 0 1 0;
@@ -493,7 +494,7 @@ CLIME;
 #X connect 14 0 1 1;
 #X restore 659 198 pd countdown;
 #X obj 248 125 clip~ -1 1;
-#N canvas 32 231 539 320 network-connection 0;
+#N canvas 30 234 539 320 network-connection 0;
 #X obj 25 172 s k-tempo-gui;
 #X obj 39 199 s k-soundbank-gui;
 #X obj 59 227 s k-harmony-gui;
@@ -505,7 +506,7 @@ CLIME;
 #X obj 303 199 s k-revmix-gui;
 #X obj 25 122 unpack f f f f f f f f f f;
 #X obj 221 54 netsend;
-#X obj 221 79 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 221 79 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 222 25 inlet;
 #X obj 50 98 route /snapper;

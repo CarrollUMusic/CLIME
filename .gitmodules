@@ -1,0 +1,3 @@
+[submodule "SyncJams"]
+	path = SyncJams
+	url = https://github.com/chr15m/SyncJams

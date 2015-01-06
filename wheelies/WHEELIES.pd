@@ -1,8 +1,8 @@
-#N canvas 273 344 162 264 10;
+#N canvas 1094 457 168 290 10;
 #X declare -path .;
 #X declare -path internals;
 #X declare -path ../SyncJams/pure-data;
-#N canvas 1 73 539 300 instruments 0;
+#N canvas 1 88 539 300 instruments 0;
 #X obj 108 162 gamelan-tables;
 #X obj 63 55 gamelan-play 1;
 #X obj 62 76 gamelan-play 2;
@@ -76,15 +76,13 @@
 #X connect 19 0 8 8;
 #X connect 20 0 8 9;
 #X restore 76 252 pd fill-sections-randomly;
-#X obj 79 230 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 25 232 loadbang;
 #X obj 363 170 array define section-1 10;
 #X obj 364 191 array define section-2 10;
 #X obj 364 213 array define section-3 10;
 #X obj 364 236 array define section-4 10;
 #X obj 365 257 array define section-5 10;
 #X obj 365 279 array define section-6 10;
+#X obj 74 231 r random-selection;
 #X connect 12 0 14 0;
 #X connect 13 0 11 0;
 #X connect 13 0 11 1;
@@ -92,10 +90,9 @@
 #X connect 15 0 14 1;
 #X connect 16 0 17 0;
 #X connect 17 0 15 0;
-#X connect 19 0 18 0;
-#X connect 20 0 18 0;
-#X restore 21 122 pd instruments;
-#N canvas 1 108 590 325 control-internals 0;
+#X connect 25 0 18 0;
+#X restore 21 148 pd instruments;
+#N canvas 767 423 590 325 control-internals 0;
 #X obj 97 71 % 10;
 #X obj 148 249 pack;
 #X msg 147 276 \; rotate-gamelan-\$1 \$2;
@@ -161,8 +158,8 @@
 #X connect 28 0 30 0;
 #X connect 29 0 28 2;
 #X connect 30 0 1 1;
-#X restore 21 148 pd control-internals;
-#N canvas 448 260 556 325 setup 0;
+#X restore 21 174 pd control-internals;
+#N canvas 498 267 610 412 setup 0;
 #X obj 91 54 declare -path internals;
 #X obj 89 76 loadbang;
 #X obj 300 1 r player-num;
@@ -177,15 +174,20 @@
 #X msg 350 279 \; ictus-\$2-gui color 0 \$1 \$1 \; beat-\$2-gui color
 0 \$1 \$1 \; density-\$2-gui color 0 \$1 \$1;
 #X obj 351 197 sel 0;
-#X obj 300 42 t b b f b;
 #X msg 324 113 0;
 #X obj 303 22 + 1;
-#X msg 282 65 \; pd-select-player vis 0 \; pd-controls vis 1;
+#X msg 418 118 \; pd-select-player vis 0 \; pd-controls vis 1;
 #X msg 90 99 \; pd dsp 1 \; section 1 \; pd-controls vis 0 \; pd-select-player
 vis 1 \; beat-1-gui 10 \; beat-2-gui 10 \; beat-3-gui 10 \; beat-4-gui
 10 \; beat-5-gui 10 \; beat-6-gui 10;
-#X connect 1 0 17 0;
-#X connect 2 0 15 0;
+#X obj 51 274 r show-preset-editor;
+#X obj 300 42 t b f b;
+#X obj 405 69 r random-selection;
+#X obj 448 31 r load-presets-button;
+#X msg 52 299 \; pd-preset-editor vis 1 \; pd-select-player vis 0 \;
+mute 0;
+#X connect 1 0 16 0;
+#X connect 2 0 14 0;
 #X connect 3 0 5 0;
 #X connect 4 0 3 0;
 #X connect 5 0 6 0;
@@ -198,13 +200,15 @@ vis 1 \; beat-1-gui 10 \; beat-2-gui 10 \; beat-3-gui 10 \; beat-4-gui
 #X connect 10 0 8 0;
 #X connect 12 0 9 0;
 #X connect 12 1 10 0;
-#X connect 13 0 4 0;
-#X connect 13 1 16 0;
-#X connect 13 2 12 1;
-#X connect 13 3 14 0;
-#X connect 14 0 5 1;
-#X connect 15 0 13 0;
-#X restore 21 70 pd setup;
+#X connect 13 0 5 1;
+#X connect 14 0 18 0;
+#X connect 17 0 21 0;
+#X connect 18 0 4 0;
+#X connect 18 1 12 1;
+#X connect 18 2 13 0;
+#X connect 19 0 15 0;
+#X connect 20 0 15 0;
+#X restore 21 96 pd setup;
 #N canvas 1 148 261 160 metronome 0;
 #X obj 42 61 syncjams;
 #X obj 42 90 route tick;
@@ -212,7 +216,7 @@ vis 1 \; beat-1-gui 10 \; beat-2-gui 10 \; beat-3-gui 10 \; beat-4-gui
 #X obj 42 32 declare -path ../SyncJams/pure-data;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
-#X restore 21 96 pd metronome;
+#X restore 21 122 pd metronome;
 #N canvas 498 187 732 519 networking 0;
 #X obj 146 147 netsend;
 #X obj 146 172 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -290,18 +294,28 @@ density-\$1-gui set \$4;
 #X connect 34 0 26 0;
 #X connect 34 1 27 0;
 #X connect 34 2 28 0;
-#X restore 21 174 pd networking;
-#N canvas 301 241 759 429 select-player 1;
-#X obj 315 150 vradio 15 1 0 6 player-num empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 325 75 WHEELIES;
-#X text 295 112 Choose your player number;
-#X text 336 149 1;
-#X text 336 165 2;
-#X text 336 180 3;
-#X text 336 195 4;
-#X text 336 210 5;
-#X text 336 225 6;
+#X restore 21 200 pd networking;
+#N canvas 659 311 545 227 select-player 0;
+#X obj 78 103 vradio 15 1 0 6 player-num empty empty 0 -8 0 10 -262144
+-1 -1 3;
+#X text 134 30 WHEELIES;
+#X text 99 102 1;
+#X text 99 118 2;
+#X text 99 133 3;
+#X text 99 148 4;
+#X text 99 163 5;
+#X text 99 178 6;
+#X obj 290 162 bng 15 250 50 0 show-preset-editor empty empty 17 7
+0 10 -262144 -1 -1;
+#X obj 290 110 bng 15 250 50 0 load-presets-button empty empty 17 7
+0 10 -262144 -1 -1;
+#X text 18 74 1 Choose your player number;
+#X text 218 75 2 Load preset file or choose random instruments;
+#X text 312 109 Load preset file;
+#X text 312 161 Edit presets;
+#X obj 290 135 bng 15 250 50 0 random-selection empty empty 17 7 0
+10 -262144 -1 -1;
+#X text 312 135 Use random selection of instruments;
 #X restore 21 44 pd select-player;
 #N canvas 177 457 450 300 send-sliders 0;
 #X obj 33 28 send-data 1;
@@ -310,7 +324,7 @@ density-\$1-gui set \$4;
 #X obj 35 51 send-data 4;
 #X obj 110 52 send-data 5;
 #X obj 185 53 send-data 6;
-#X restore 21 200 pd send-sliders;
+#X restore 21 226 pd send-sliders;
 #N canvas 1 71 450 300 send-stop-start 0;
 #X obj 135 64 r mute;
 #X obj 207 63 r unmute;
@@ -327,18 +341,18 @@ density-\$1-gui set \$4;
 #X connect 4 0 7 0;
 #X connect 5 0 4 0;
 #X connect 6 0 4 0;
-#X restore 21 226 pd send-stop-start;
-#N canvas 522 151 579 397 controls 0;
+#X restore 21 252 pd send-stop-start;
+#N canvas 652 292 579 397 controls 0;
 #X obj 23 243 vsl 15 128 10 1 0 0 ictus-4 ictus-4-gui ictus 0 -9 0
-10 -262144 -1 -1 0 1;
+10 -262144 -128992 -128992 0 1;
 #X obj 24 41 vsl 15 128 10 1 0 0 ictus-1 ictus-1-gui ictus 0 -9 0 10
--262144 -128992 -128992 0 1;
+-262144 -1 -1 0 1;
 #X obj 59 41 vsl 15 128 1 10 0 0 beat-1 beat-1-gui beat 0 -9 0 10 -262144
--128992 -128992 12700 1;
+-1 -1 12700 1;
 #X obj 96 41 vsl 15 128 10 1 0 0 density-1 density-1-gui density 0
--9 0 10 -262144 -128992 -128992 0 1;
-#X obj 487 241 vsl 15 128 0 1 0 0 mastervol empty mastervol 0 -9 0
-10 -262144 -1 -1 0 1;
+-9 0 10 -262144 -1 -1 0 1;
+#X obj 487 241 vsl 15 128 0 1 0 0 mastervol mastervol-gui mastervol
+0 -9 0 10 -262144 -1 -1 0 1;
 #X obj 509 121 bng 50 250 50 0 mute empty empty 17 7 0 10 -258113 -1
 -1;
 #X obj 448 121 bng 50 250 50 0 unmute empty empty 17 7 0 10 -4034 -1
@@ -356,9 +370,9 @@ density-\$1-gui set \$4;
 #X obj 390 41 vsl 15 128 10 1 0 0 density-3 density-3-gui density 0
 -9 0 10 -262144 -1 -1 0 1;
 #X obj 58 243 vsl 15 128 1 10 0 0 beat-4 beat-4-gui beat 0 -9 0 10
--262144 -1 -1 12700 1;
+-262144 -128992 -128992 12700 1;
 #X obj 95 243 vsl 15 128 10 1 0 0 density-4 density-4-gui density 0
--9 0 10 -262144 -1 -1 0 1;
+-9 0 10 -262144 -128992 -128992 0 1;
 #X obj 172 243 vsl 15 128 10 1 0 0 ictus-5 ictus-5-gui ictus 0 -9 0
 10 -262144 -1 -1 0 1;
 #X obj 207 243 vsl 15 128 1 10 0 0 beat-5 beat-5-gui beat 0 -9 0 10
@@ -375,3 +389,265 @@ density-\$1-gui set \$4;
 -66577 0;
 #X text 466 73 by Chris Brown;
 #X restore 21 18 pd controls;
+#N canvas 540 190 671 244 preset-editor 0;
+#X obj 186 111 bng 15 250 50 0 make-random empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 40 16 bng 15 250 50 0 play-set empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 205 110 make random set;
+#X text 59 14 play set;
+#X obj 52 112 vradio 15 1 0 6 edit-section empty empty 0 -8 0 10 -262144
+-1 -1 5;
+#X text 42 92 section;
+#X obj 40 40 nbx 5 14 1 130 0 0 box1-s box1-r empty 0 -8 0 10 -262144
+-1 -262144 88 256;
+#X obj 100 40 nbx 5 14 1 130 0 0 box2-s box2-r empty 0 -8 0 10 -262144
+-1 -262144 44 256;
+#X obj 160 40 nbx 5 14 1 130 0 0 box3-s box3-r empty 0 -8 0 10 -262144
+-1 -262144 33 256;
+#X obj 220 40 nbx 5 14 1 130 0 0 box4-s box4-r empty 0 -8 0 10 -262144
+-1 -262144 30 256;
+#X obj 280 40 nbx 5 14 1 130 0 0 box5-s box5-r empty 0 -8 0 10 -262144
+-1 -262144 24 256;
+#X obj 340 40 nbx 5 14 1 130 0 0 box6-s box6-r empty 0 -8 0 10 -262144
+-1 -262144 33 256;
+#X obj 400 40 nbx 5 14 1 130 0 0 box7-s box7-r empty 0 -8 0 10 -262144
+-1 -262144 31 256;
+#X obj 460 40 nbx 5 14 1 130 0 0 box8-s box8-r empty 0 -8 0 10 -262144
+-1 -262144 25 256;
+#X obj 520 40 nbx 5 14 1 130 0 0 box9-s box9-r empty 0 -8 0 10 -262144
+-1 -262144 67 256;
+#X obj 580 40 nbx 5 14 1 130 0 0 box10-s box10-r empty 0 -8 0 10 -262144
+-1 -262144 65 256;
+#X obj 186 135 bng 15 250 50 0 store-current empty empty 17 7 0 10
+-262144 -1 -1;
+#X text 73 113 1;
+#X text 73 128 2;
+#X text 73 143 3;
+#X text 73 158 4;
+#X text 73 173 5;
+#X text 73 188 6;
+#X obj 187 186 bng 15 250 50 0 save-presets-button empty empty 17 7
+0 10 -262144 -1 -1;
+#X text 206 184 save presets to file;
+#X text 205 133 store current selection as a section;
+#X floatatom 429 133 3 1 6 0 - set-test-section-gui set-test-section
+, f 3;
+#N canvas 1 73 450 118 internals 0;
+#N canvas 1 93 450 300 setup 0;
+#X obj 45 39 loadbang;
+#X obj 47 105 array define test-section 10;
+#X obj 45 65 s make-random;
+#X msg 169 62 \; set-test-section-gui 1;
+#X connect 0 0 2 0;
+#X connect 0 0 3 0;
+#X restore 25 64 pd setup;
+#N canvas 1 88 516 480 make-list 0;
+#X obj 27 55 r box1-s;
+#X obj 101 49 r box2-s;
+#X obj 101 72 t b f;
+#X obj 124 119 t b f;
+#X obj 172 69 t b f;
+#X obj 195 116 t b f;
+#X obj 245 68 t b f;
+#X obj 268 115 t b f;
+#X obj 316 65 t b f;
+#X obj 339 112 t b f;
+#X obj 337 165 t b f;
+#X obj 101 324 pack f f f f f f f f f f;
+#X obj 124 96 r box3-s;
+#X obj 172 46 r box4-s;
+#X obj 195 93 r box5-s;
+#X obj 245 45 r box6-s;
+#X obj 268 92 r box7-s;
+#X obj 316 42 r box8-s;
+#X obj 339 89 r box9-s;
+#X obj 337 142 r box10-s;
+#X obj 104 364 array set test-section;
+#X connect 0 0 11 0;
+#X connect 1 0 2 0;
+#X connect 2 0 11 0;
+#X connect 2 1 11 1;
+#X connect 3 0 11 0;
+#X connect 3 1 11 2;
+#X connect 4 0 11 0;
+#X connect 4 1 11 3;
+#X connect 5 0 11 0;
+#X connect 5 1 11 4;
+#X connect 6 0 11 0;
+#X connect 6 1 11 5;
+#X connect 7 0 11 0;
+#X connect 7 1 11 6;
+#X connect 8 0 11 0;
+#X connect 8 1 11 7;
+#X connect 9 0 11 0;
+#X connect 9 1 11 8;
+#X connect 10 0 11 0;
+#X connect 10 1 11 9;
+#X connect 11 0 20 0;
+#X connect 12 0 3 0;
+#X connect 13 0 4 0;
+#X connect 14 0 5 0;
+#X connect 15 0 6 0;
+#X connect 16 0 7 0;
+#X connect 17 0 8 0;
+#X connect 18 0 9 0;
+#X connect 19 0 10 0;
+#X restore 112 65 pd make-list;
+#N canvas 1 83 524 415 make-random 0;
+#X obj 169 198 int;
+#X obj 195 198 + 1;
+#X msg 228 162 0;
+#X obj 170 163 until;
+#X msg 169 139 10;
+#X obj 171 114 t b b;
+#X obj 219 198 t f f b;
+#X obj 350 261 random 130;
+#X obj 350 286 + 1;
+#X obj 211 258 pack f f;
+#X msg 188 293 \; box\$1-r \$2;
+#X obj 171 42 r make-random;
+#X connect 0 0 1 0;
+#X connect 1 0 6 0;
+#X connect 2 0 0 1;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 5 1 2 0;
+#X connect 6 0 0 1;
+#X connect 6 1 9 0;
+#X connect 6 2 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 1;
+#X connect 9 0 10 0;
+#X connect 11 0 5 0;
+#X restore 204 63 pd make-random;
+#N canvas 665 84 513 429 play-set 0;
+#X obj 150 329 pack;
+#X msg 172 372 \; rotate-gamelan-\$1 \$2;
+#X obj 121 216 int;
+#X obj 148 217 + 1;
+#X msg 143 143 -1;
+#X obj 177 217 moses 10;
+#X msg 298 208 \; box\$1-r color 0 22 0;
+#X obj 175 240 t b f f f f f;
+#X obj 298 183 moses 1;
+#X obj 252 260 + 1;
+#X msg 297 245 \; box\$1-r color 16 22 0;
+#X obj 115 54 r play-set;
+#X obj 203 289 array get test-section;
+#X obj 282 317 unpack;
+#X obj 121 87 t b b;
+#X obj 456 248 del 1000;
+#X msg 447 222 bang;
+#X msg 455 275 \; mastervol-gui 0;
+#X msg 214 73 \; mastervol-gui 1;
+#X obj 119 180 delay 800;
+#X connect 0 0 1 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 2 0;
+#X connect 5 0 7 0;
+#X connect 5 1 6 0;
+#X connect 5 1 16 0;
+#X connect 7 0 19 0;
+#X connect 7 1 2 1;
+#X connect 7 2 0 0;
+#X connect 7 3 12 0;
+#X connect 7 4 9 0;
+#X connect 7 5 8 0;
+#X connect 8 1 6 0;
+#X connect 9 0 10 0;
+#X connect 11 0 14 0;
+#X connect 12 0 13 0;
+#X connect 13 0 0 1;
+#X connect 14 0 4 0;
+#X connect 14 1 18 0;
+#X connect 15 0 17 0;
+#X connect 16 0 15 0;
+#X connect 19 0 2 0;
+#X restore 229 31 pd play-set;
+#N canvas 713 402 548 353 manage-preset-file 0;
+#X obj 57 157 text define presets;
+#X obj 57 111 openpanel;
+#X obj 137 111 savepanel;
+#X msg 57 134 read \$1;
+#X msg 137 134 write \$1;
+#X obj 277 109 text set presets;
+#X obj 277 63 array get test-section;
+#X obj 91 207 del 1000;
+#X obj 164 295 array set section-1;
+#X obj 163 267 text get presets;
+#X obj 265 219 int;
+#X obj 292 219 + 1;
+#X obj 320 220 t f f f;
+#X msg 313 285 symbol section-\$1;
+#X obj 266 198 until;
+#X msg 265 177 6;
+#X msg 314 181 0;
+#X obj 91 234 t b b;
+#X obj 49 30 r load-presets-button;
+#X obj 280 260 - 1;
+#X obj 279 17 r store-current;
+#X obj 137 84 r save-presets-button;
+#X obj 311 86 - 1;
+#X obj 402 38 r set-test-section;
+#X msg 88 182 bang;
+#X connect 1 0 3 0;
+#X connect 1 0 24 0;
+#X connect 2 0 4 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 6 0 5 0;
+#X connect 7 0 17 0;
+#X connect 9 0 8 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 1;
+#X connect 12 1 19 0;
+#X connect 12 2 13 0;
+#X connect 13 0 8 2;
+#X connect 14 0 10 0;
+#X connect 15 0 14 0;
+#X connect 16 0 10 1;
+#X connect 17 0 15 0;
+#X connect 17 1 16 0;
+#X connect 18 0 1 0;
+#X connect 19 0 9 0;
+#X connect 20 0 6 0;
+#X connect 21 0 2 0;
+#X connect 22 0 5 1;
+#X connect 23 0 22 0;
+#X connect 24 0 7 0;
+#X restore 85 33 pd manage-preset-file;
+#N canvas 1 73 450 324 section-browser 0;
+#X obj 99 25 r edit-section;
+#X obj 98 82 text get presets;
+#X obj 99 118 array set test-section;
+#X obj 145 181 unpack f f f f f f f f f f;
+#X obj 132 228 s box1-r;
+#X obj 144 250 s box2-r;
+#X obj 157 271 s box3-r;
+#X obj 169 293 s box4-r;
+#X obj 191 227 s box5-r;
+#X obj 203 249 s box6-r;
+#X obj 216 270 s box7-r;
+#X obj 228 292 s box8-r;
+#X obj 250 226 s box9-r;
+#X obj 262 248 s box10-r;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 0;
+#X connect 3 2 6 0;
+#X connect 3 3 7 0;
+#X connect 3 4 8 0;
+#X connect 3 5 9 0;
+#X connect 3 6 10 0;
+#X connect 3 7 11 0;
+#X connect 3 8 12 0;
+#X connect 3 9 13 0;
+#X restore 308 63 pd section-browser;
+#X restore 573 207 pd internals;
+#X restore 21 70 pd preset-editor;

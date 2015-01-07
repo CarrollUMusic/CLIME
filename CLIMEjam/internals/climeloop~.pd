@@ -1,4 +1,4 @@
-#N canvas 316 245 772 484 10;
+#N canvas 312 251 772 484 10;
 #X declare -lib iemlib2;
 #X obj 528 277 soundfiler;
 #X obj 603 204 f \$0;
@@ -33,14 +33,14 @@
 #X msg 266 20 2;
 #X obj 49 387 declare -lib iemlib2;
 #X obj 181 355 splitfilename;
-#X obj 101 182 cnv 15 178 17 empty \$0-canvas 101_bleephop.aif 3 9
-0 10 -233017 -66577 0;
+#X obj 101 182 cnv 15 178 17 empty \$0-canvas 160_ethex-break-30-dubstep.wav
+3 9 0 10 -233017 -66577 0;
 #X obj 56 243 f \$0;
 #X obj 86 207 t b a;
 #X msg 48 296 \; \$1-canvas label \$2;
 #X obj 55 268 pack f symbol;
-#X obj 248 101 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
+#X obj 248 101 tgl 15 0 empty empty empty 17 7 0 10 -258699 -1 -262144
+1 1;
 #X obj 264 101 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 249 127 vradio 13 1 0 4 empty empty empty 0 -8 0 10 -262144
@@ -49,8 +49,8 @@
 #X text 263 139 8;
 #X text 263 152 16;
 #N canvas 0 50 450 250 (subpatch) 0;
-#X array \$0-loop 209437 float 2;
-#X coords 0 1 209437 -1 130 40 2 0 0;
+#X array \$0-loop 132353 float 2;
+#X coords 0 1 132353 -1 130 40 2 0 0;
 #X restore 105 135 graph;
 #X obj 598 349 r /nanoKontrol/r/\$1;
 #X obj 596 373 sel 127;
@@ -64,13 +64,17 @@
 #X obj 383 431 r /nanoKontrol/m/\$1;
 #X obj 322 373 *~;
 #X obj 284 103 vsl 15 93 0 1 0 0 empty empty empty 0 -9 0 10 -204800
--1 -1 9200 1;
+-1 -1 7300 1;
 #X obj 278 373 line~;
 #X msg 278 350 \$1 50;
 #X obj 174 414 r /nanoKontrol/slider/\$1;
 #X obj 172 436 / 127;
 #X obj 556 462 change;
 #X obj 321 396 throw~ all-loops;
+#X msg 367 14 color 16 0 0;
+#X msg 458 13 color 13 22 0;
+#X obj 265 247 sel 0 1;
+#X obj 565 22 loadbang;
 #X connect 0 0 8 1;
 #X connect 1 0 3 1;
 #X connect 2 0 10 0;
@@ -115,6 +119,7 @@
 #X connect 35 1 37 1;
 #X connect 37 0 36 0;
 #X connect 38 0 22 1;
+#X connect 38 0 65 0;
 #X connect 39 0 26 0;
 #X connect 40 0 29 0;
 #X connect 45 0 46 0;
@@ -136,4 +141,9 @@
 #X connect 59 0 60 0;
 #X connect 60 0 56 0;
 #X connect 61 0 40 0;
+#X connect 63 0 38 0;
+#X connect 64 0 38 0;
+#X connect 65 0 64 0;
+#X connect 65 1 63 0;
+#X connect 66 0 64 0;
 #X coords 0 -1 1 1 200 100 1 100 100;

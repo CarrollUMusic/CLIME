@@ -22,8 +22,12 @@ void setup()
   } 
   catch(Exception e)
   {
+  }
+  if (myip==null || myip.equals("127.0.1.1;\n") || myip.equals("127.0.0.1;\n"))
+  {
     String[] lines = loadStrings(System.getProperty("user.home")+"/.myip");
-    myip = lines[0]+";\n";
+    String[] temp_ips = split(lines[0], ' ');
+    myip = temp_ips[0]+";\n";
   }
   println(myip);
   textAlign(CENTER);

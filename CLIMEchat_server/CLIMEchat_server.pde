@@ -1,5 +1,6 @@
 import processing.net.*;
 import hypermedia.net.*;
+import java.net.Inet4Address;
 
 Server chatServer;
 Server pdServer;
@@ -16,12 +17,15 @@ void setup()
   pdBroadcast.listen(false);
   chatBroadcast.listen(false);
   myip = pdBroadcast.address();
-  if (myip != null) myip += ";\n";
-  else
+  try {
+    myip=java.net.InetAddress.getLocalHost().getHostAddress()+";\n";
+  } 
+  catch(Exception e)
   {
     String[] lines = loadStrings(System.getProperty("user.home")+"/.myip");
     myip = lines[0]+";\n";
   }
+  println(myip);
   textAlign(CENTER);
   noStroke();
 }

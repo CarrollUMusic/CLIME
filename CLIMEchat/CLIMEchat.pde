@@ -80,7 +80,7 @@ void keyPressed()
 {
   if (key==CODED && keyCode == KeyEvent.VK_HOME)
   {
-    chatClient = new Client (this, "matthys-mpc", 13032);
+    chatClient = new Client (this, serverIP, 13032);
     addToList ("***ATTEMPTING TO RECONNECT TO SERVER***");
   }
   if (key==ENTER || key==RETURN)

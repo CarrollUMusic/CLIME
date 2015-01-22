@@ -1,6 +1,7 @@
-#N canvas 722 615 283 67 10;
+#N canvas 720 646 283 67 10;
 #X declare -path ../SyncJams/pure-data;
-#N canvas 674 112 586 431 internals 0;
+#X declare -path internals;
+#N canvas 672 115 586 431 internals 0;
 #X obj 174 17 key;
 #X obj 207 107 mtof;
 #X obj 175 40 moses 0;
@@ -281,6 +282,7 @@
 #X obj 146 116 outlet;
 #X connect 0 0 1 0;
 #X restore 451 143 pd get-server-ip;
+#X obj 64 390 declare -path internals;
 #X connect 0 0 2 0;
 #X connect 1 0 7 0;
 #X connect 2 1 14 0;

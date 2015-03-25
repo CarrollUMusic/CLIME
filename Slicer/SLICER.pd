@@ -1,7 +1,7 @@
-#N canvas 861 122 310 206 10;
+#N canvas 859 125 310 206 10;
 #X declare -path ../SyncJams/pure-data;
 #X declare -path internals;
-#N canvas 8 119 888 567 internals 0;
+#N canvas 6 122 888 567 internals 0;
 #X obj 28 129 slicerec~ \$0-audio;
 #X obj 276 43 table \$0-audio 262147;
 #X obj 36 47 *~ 0;
@@ -72,7 +72,7 @@
 #X connect 9 0 10 0;
 #X connect 10 0 7 0;
 #X restore 363 305 pd cuepoints;
-#N canvas 248 172 795 485 slicerec~parameters 0;
+#N canvas 144 352 795 485 slicerec~parameters 0;
 #X floatatom 140 380 3 0 0 0 - - -, f 3;
 #X floatatom 256 382 3 0 0 0 - - -, f 3;
 #X floatatom 370 382 5 0 0 0 - - -, f 5;
@@ -269,15 +269,14 @@ unless a new attack is detected.;
 #X msg 299 503 0.8 0.9 1.1 1 1;
 #X msg 38 259 0.5 0.875 0.75 1 1;
 #X obj 31 424 declare -path internals;
-#X msg 597 64 \; attackstep 6 \; attackthresh 70 \; silencethresh 55
-\; timeconstant 150 \; main-vol-r 1 \; pd dsp 1;
 #X obj 276 15 table \$0-cuepoints 32;
+#X msg 597 64 \; main-vol-r 1 \; pd dsp 1;
 #X connect 0 0 29 0;
 #X connect 0 1 29 1;
 #X connect 2 0 36 0;
 #X connect 3 0 2 0;
 #X connect 3 1 2 0;
-#X connect 4 0 53 0;
+#X connect 4 0 54 0;
 #X connect 6 0 46 0;
 #X connect 7 0 8 0;
 #X connect 8 0 9 0;

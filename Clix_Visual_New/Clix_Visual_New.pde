@@ -1,35 +1,32 @@
-import processing.net.*;
-import hypermedia.net.*;
+import netP5.*;
+import oscP5.*;
 
-UDP udp;
-Client tcpClient;
-int port = 13033;
-String serverIP = null;
-boolean connected = false;
+OscP5 oscP5;
+final int port = 13033;
 final boolean DEBUG = false;
 final float VOLUME_THRESHOLD = 0.05;
 final float ROTATION_SPEED = 0.002;
-final float NODE_SIZE = 10;
-final float EDGE_LENGTH = 25;
+final float NODE_SIZE = 9;
+final float EDGE_LENGTH = 35;
 final float EDGE_STRENGTH = 0.2;
 final float SPACER_STRENGTH = 1000;
-final int maxParticles = 300;
-final float EASE_AMT = 0.05;
+final int maxParticles = 100;
+final float EASE_AMT = 0.25;
 ParticleSystem physics;
 float centroidX = 0;
 float centroidY = 0;
 float easeRX, easeRY, easeRZ; // rotation smoothing
 
-final color playerColor[] = {
-  #7947ef, #f04869, #bdf048, #48f0ce
-};
+color playerColor[];
+//  #7947ef, #f04869, #bdf048, #48f0ce
+//};
 
-boolean invert = true;
-boolean render3D = true;
+int globalPNUM, globalASCII = 0;
+boolean newNode = false;
 
 // PROCESSING /////////////////////////////////////
 
-int numPlayers = 4;
+int numPlayers = 0;
 float particleSize[], particleGrowth[];
 color particleFill[];
 boolean boxParticle[];
@@ -40,16 +37,20 @@ float easeCX, easeCY, easeScale;
 
 void setup()
 {
-  if (render3D)
-    size( 400, 300, P3D );
-  else
-    size( displayWidth, displayHeight, P2D );
+  size( 640, 480, P3D );
+  //fullScreen(P3D);
   smooth();
-  if (render3D) strokeWeight(1);
-  else strokeWeight( 2 );
+  playerColor = new color[256];
+  for (int i=0; i<playerColor.length; i++)
+  {
+    playerColor[i] = color (i, 150, 200);
+    println(playerColor[i]);
+  }
+  oscP5 = new OscP5(this, port);
+  strokeWeight(1);
   ellipseMode( CENTER );
   strokeCap( ROUND );
-  
+
   particleSize = new float[maxParticles];
   particleGrowth = new float[maxParticles];
   particleFill = new color[maxParticles];
@@ -67,9 +68,6 @@ void setup()
 
   initialize(1);
 
-  udp = new UDP(this,13034);
-  udp.listen(true);
-
   easeCX = 0;
   easeCY = 0;
   easeScale = 20;
@@ -80,44 +78,27 @@ void setup()
 
 void draw()
 {
-    if (!connected && serverIP != null)
-  {
-    tcpClient = new Client (this, serverIP, port);
-    connected = true;
-    println("connected!");
-  }
-  
   noLights();
   ambientLight(100, 100, 100);
   directionalLight(255, 255, 255, 0, 2, 0);
   physics.tick(); 
   if ( physics.numberOfParticles() > 1 )
     updateCentroid();
-  if (invert) background(0);
-  else background(255);
-  //text( "" + physics.numberOfParticles() + " PARTICLES\n" + (int)frameRate + " FPS", 10, 20 );
-  if (render3D)
-    translate( width/2, height/2, 0 );
-  else
-    translate( width/2, height/2 );
-  if (!render3D) rotate(sqrt(frameCount*numParticles/10000.0)*sign);
-  else
-  {
-    easeRX += (noise(frameCount*ROTATION_SPEED, 0)-0.5)*ROTATION_SPEED;
-    easeRY += (noise(frameCount*ROTATION_SPEED, 1)-0.5)*ROTATION_SPEED;
-    easeRZ += (noise(frameCount*ROTATION_SPEED, 2)-0.5)*ROTATION_SPEED;
-    rotateX (easeRX*TWO_PI);
-    rotateY (easeRY*TWO_PI);
-    rotateZ (easeRZ*TWO_PI);
-  }
+  background(0);
+  translate( width/2, height/2, 0 );
+  easeRX += (noise(frameCount*ROTATION_SPEED, 0)-0.5)*ROTATION_SPEED;
+  easeRY += (noise(frameCount*ROTATION_SPEED, 1)-0.5)*ROTATION_SPEED;
+  easeRZ += (noise(frameCount*ROTATION_SPEED, 2)-0.5)*ROTATION_SPEED;
+  rotateX (easeRX*TWO_PI);
+  rotateY (easeRY*TWO_PI);
+  rotateZ (easeRZ*TWO_PI);
   scale( easeScale );
   translate( -easeCX, -easeCY );
   drawNetwork();
-
-  if (connected && tcpClient.available() > 0)
+  if (newNode)
   {
-    int x = tcpClient.readChar();
-    println("received: "+x);
+    newNode = false;
+    addNode(globalPNUM, globalASCII, false);
   }
 }
 
@@ -130,52 +111,38 @@ void drawNetwork()
     Particle v = physics.getParticle( i );
     float radius = NODE_SIZE * sqrt(particleSize[i]) * (3 + (numParticles*2.0/maxParticles)) * particleGrowth[i];
     fill(particleFill[i]);
-    if (render3D)
-    {
-      pushMatrix();
-      translate( v.position.x, v.position.y, v.position.z );
-      if (boxParticle[i]) box(radius/3, radius/3, radius/3);
-      else sphere(radius/3);
-      popMatrix();
-    } else ellipse( v.position.x, v.position.y, radius, radius );
+    pushMatrix();
+    translate( v.position.x, v.position.y, v.position.z );
+    if (boxParticle[i]) box(radius, radius, radius);
+    else sphere(radius/3);
+    popMatrix();
   }
 
   // draw edges
-  if (invert) stroke(255);
-  else stroke(0);
-  beginShape( LINES );
+  stroke(255);
   for ( int i = 0; i < physics.numberOfSprings (); ++i )
   {
     Spring e = physics.getSpring( i );
     Particle a = e.getOneEnd();
     Particle b = e.getTheOtherEnd();
-    if (render3D)
-    {
-      vertex( a.position.x, a.position.y, a.position.z);
-      vertex( b.position.x, b.position.y, b.position.z);
-    } else
-    {
-      vertex( a.position.x, a.position.y);
-      vertex( b.position.x, b.position.y);
-    }
+    line( a.position.x, a.position.y, a.position.z, b.position.x, b.position.y, b.position.z);
   }
-  endShape();
 }
 
 void mousePressed()
 {
   if (mouseButton==LEFT)
-    addNode(int(random(4)), random(0, 1.0), true);
+    addNode(int(random(4)), (int)random(256), true);
   else if (mouseButton==RIGHT)
-    addNode(int(random(4)), random(0, 1.0), false);
+    addNode(int(random(4)), (int)random(256), false);
 }
 
 void mouseDragged()
 {
   if (mouseButton==LEFT)
-    addNode(int(random(4)), random(0, 1.0), true);
+    addNode(int(random(4)), (int)random(256), true);
   else if (mouseButton==RIGHT)
-    addNode(int(random(4)), random(0, 1.0), false);
+    addNode(int(random(4)), (int)random(256), false);
 }
 
 void keyPressed()
@@ -194,7 +161,7 @@ void keyPressed()
 
   if ( key == ' ' )
   {
-    addNode(int(random(4)), random(0, 1.0), true);
+    addNode((int)random(256), (int)random(256), true);
     return;
   }
 }
@@ -205,9 +172,9 @@ void updateCentroid()
 {
   float 
     xMax = Float.NEGATIVE_INFINITY, 
-  xMin = Float.POSITIVE_INFINITY, 
-  yMin = Float.POSITIVE_INFINITY, 
-  yMax = Float.NEGATIVE_INFINITY;
+    xMin = Float.POSITIVE_INFINITY, 
+    yMin = Float.POSITIVE_INFINITY, 
+    yMax = Float.NEGATIVE_INFINITY;
 
   for ( int i = 0; i < physics.numberOfParticles (); ++i )
   {
@@ -253,13 +220,14 @@ void initialize(float c)
   particleSize[0] = c;
 }
 
-void addNode(int pnum, float psize, boolean addp)
+void addNode(int pnum, int ascii, boolean addp)
 { 
+  float psize = ascii/255.0;
   numParticles++;
   particleSize[numParticles%maxParticles] = psize;
   particleGrowth[numParticles%maxParticles] = 0;
-  boxParticle[numParticles%maxParticles] = (pnum%2==0);
-  particleFill[numParticles%maxParticles] = playerColor[int(random(4))];
+  boxParticle[numParticles%maxParticles] = (ascii<91);
+  particleFill[numParticles%maxParticles] = playerColor[pnum];
   while (physics.numberOfParticles () > maxParticles-1) killParticle();
 
 
@@ -271,10 +239,7 @@ void addNode(int pnum, float psize, boolean addp)
       q = physics.getParticle( (int)random( 0, physics.numberOfParticles()-1) );
     addSpacersToNode( p, q );
     makeEdgeBetween( p, q );
-    if (render3D)
-      p.position.set( q.position.x + random( -1, 1 ), q.position.y + random( -1, 1 ), q.position.z + random(-1, 1) );
-    else
-      p.position.set( q.position.x + random( -1, 1 ), q.position.y + random( -1, 1 ), 0 );
+    p.position.set( q.position.x + random( -1, 1 ), q.position.y + random( -1, 1 ), q.position.z + random(-1, 1) );
   }
 
   if (numParticles >=maxParticles || (!addp && numParticles >3))
@@ -298,15 +263,6 @@ void addNode(int pnum, float psize, boolean addp)
       makeEdgeBetween( pp, qq );
     }
   }
-  /*
-  else if (physics.numberOfSprings()>0)
-   {
-   int die = (int) random(0,physics.numberOfSprings());
-   physics.removeSpring(die);
-   }
-   else if (physics.numberOfParticles()>0)
-   killParticle();
-   */
 }
 
 void killParticle()
@@ -323,8 +279,22 @@ void killParticle()
   physics.removeParticle (doomed);
 }
 
-void receive( byte[] data, String ip, int port )
+void oscEvent (OscMessage clixMessage)
 {
-  serverIP = ip;
-  udp.listen(false);
+  if (clixMessage.checkAddrPattern("/clix"))
+  {
+    String IP = clixMessage.netAddress().address();
+    int pnum = int (split(IP, '.')[3]);
+    int ascii = (int)clixMessage.get(0).floatValue();
+    //println("IP: "+IP+", pnum: "+pnum+", ascii: "+ascii);
+    if (ascii==27)
+      initialize(1);
+    else
+    {
+      // OSC messages come asyncronously, so we add particles globally in the draw routine to prevent nutso array overruns.
+      globalPNUM = pnum;
+      globalASCII = ascii;
+      newNode = true;
+    }
+  }
 }

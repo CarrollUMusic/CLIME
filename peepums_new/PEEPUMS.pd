@@ -1,10 +1,10 @@
-#N canvas 125 116 1078 596 10;
+#N canvas 121 122 1078 596 10;
 #X declare -path rj;
 #X declare -path internals;
 #X obj 333 482 hradio 15 1 0 18 cwc-presets cwc-presets-rcv empty 0
--8 0 10 -262144 -1 -1 0;
+-8 0 10 -262144 -1 -1 15;
 #X obj 832 482 hradio 15 1 0 15 chip-presets chip-presets-rcv empty
-0 -8 0 10 -262144 -1 -1 0;
+0 -8 0 10 -262144 -1 -1 2;
 #N canvas 1 56 1150 591 synth-controls 0;
 #X obj 31 31 g_synthcontrol;
 #X obj 108 6 r \$0-GUI1;
@@ -54,8 +54,8 @@ vol 0 -9 0 10 -4034 -1 -1 12450 1;
 #X obj 453 101 tgl 30 0 playertog-12 playertog-12-rcv E 8 16 0 20 -260818
 -33289 -33289 0 1;
 #X obj 485 101 tgl 30 0 playertog-13 playertog-13-rcv R 8 16 0 20 -260818
--33289 -33289 0 1;
-#X obj 517 101 tgl 30 0 playertog-14 playertog-14-rcv T 8 16 0 20 -260818
+-33289 -33289 1 1;
+#X obj 517 101 tgl 30 0 playertog-14 playertog-14-rcv T 8 16 0 20 -166441
 -33289 -33289 0 1;
 #X obj 549 101 tgl 30 0 playertog-15 playertog-15-rcv Y 8 16 0 20 -260818
 -33289 -33289 0 1;
@@ -95,7 +95,7 @@ delay -5 -9 0 10 -191407 -1 -1 4881 1;
 #X restore 28 317 pd note-alteration;
 #X obj 87 236 bng 50 100 50 0 peepums-random-note peepums-random-set
 testnote 1 24 0 10 -191407 -260097 -1;
-#N canvas 1 400 181 186 internals 0;
+#N canvas 1 431 181 186 internals 1;
 #N canvas 529 234 450 300 setup 0;
 #X obj 231 23 declare -path rj;
 #X obj 29 17 loadbang;
@@ -408,7 +408,7 @@ testnote 1 24 0 10 -191407 -260097 -1;
 #X connect 5 0 4 0;
 #X connect 7 0 3 0;
 #X restore 36 118 pd random-note-gen;
-#N canvas 341 212 874 460 audio-internals 0;
+#N canvas 339 215 874 460 audio-internals 1;
 #X obj 192 55 s_cwc;
 #X symbolatom 239 429 20 0 0 0 - - -, f 20;
 #N canvas 1 65 1021 604 cwc_presets 0;
@@ -864,7 +864,7 @@ mod1c 0.0629921 \, mod1b 0.732283 \, mod1a 0.76378 \, osc3d 0 \, osc3c
 #X restore 193 597 pd chip_presets;
 #X obj 334 408 s \$0-GUI1;
 #X obj 295 618 s \$0-GUI2;
-#X obj 330 34 r \$0-chip-control;
+#X obj 343 21 r \$0-chip-control;
 #X obj 223 32 r \$0-cwc-control;
 #X obj 194 568 r chip-presets;
 #X obj 241 357 r cwc-presets;
@@ -948,6 +948,7 @@ excursion 0.11811 \;;
 #X msg 710 83 1;
 #X obj 758 118 == 0;
 #X obj 298 53 s_chip \$0-CHIP;
+#X floatatom 63 30 5 0 0 0 - - -, f 5;
 #X connect 0 0 19 0;
 #X connect 2 0 1 0;
 #X connect 2 1 6 0;
@@ -1010,6 +1011,7 @@ excursion 0.11811 \;;
 #X connect 52 0 48 0;
 #X connect 53 0 48 0;
 #X connect 54 0 19 0;
+#X connect 55 0 40 0;
 #X restore 36 95 pd audio-internals;
 #N canvas 1 62 494 308 player1-pitchtrack 0;
 #X obj 142 35 adc~;
@@ -1043,3 +1045,49 @@ excursion 0.11811 \;;
 #X restore 31 547 pd internals;
 #X obj 29 13 cnv 20 20 20 empty empty PEEPUMS! 0 12 0 20 -262144 -1
 0;
+#X obj 36 513 text define -k instructions;
+#A set Peepums! by Joel Matthys \; \; Peepums is a digital version
+of the game of Telephone. \; Players pass pitch values from one to
+the next \, creating chains \, circles \, and vortexes. \; \; 1 Requirements
+\; Peepums requires 4-16 players \, the more the better. \; Each player
+needs to be running Pd-0.46 or later \; (available at http://msp.ucsd.edu/software.html)
+\; and a copy of this patch plus the supporting rjlib files (included).
+\; All players must be connected to the same wireless LAN. One computer
+must be running \; the CLIMEchat_server program \, which provides central
+messaging control. \; \; Peepums is a zero-configuration system: there
+are no user networking options. \; If the "connected" toggle box in
+the lower right hand corner does not turn \; green within a few seconds
+\, there is a problem with networking. \; \; 2 Choosing your player
+\; Peepums allows up to 16 players \, numbered 1-9 and QWERTYU. Players
+should decide on their \; player numbers before beginning. (Generally
+speaking \, the lower numbered players have a \; greater impact on
+the behavior of the music \, so if possible the most experienced players
+\; should be given those positions.) When you open the Peepums patch
+\, no player number has \; yet been selected. Hold down SHIFT and press
+your player number. Your player number box \; should turn grey \, and
+the box to its left should be checked. This means that you are \; listening
+for the notes from the player before you. \; \; Player 1 is a special
+role. This is the Melody Maker. This player's mic input will be \;
+pitch-tracked and the notes sent to the other players. Player 1 should
+be chosen \; beforehand and prepared to improvise. \; \; 3 Making sound
+\; Press the spacebar or the testnote button. You will hear a random
+note played on your \; Peepums synth. There are two separate synths
+sounding at the same time. Try changing \; the presets under each synth
+\, then pressing the spacebar again. You can also drag any \; of the
+control sliders to alter the sound. \; \; There are also 4 effects
+toggles: echo \, bitcrush \, chorus \, and reverb. \; \; * Player 1
+will not hear sound when he/she presses the spacebar or testnote button
+\, \; because audio output is muted so it doesn't interfere with the
+pitch tracking. \; \; 4 Hear a note \, pass it on! \; Peepums automatically
+passes on the notes you receive. The Note Out Controls section \; allows
+you to alter the pitch and delay on the stream of notes you receive.
+\; \; 5 Changing connections \; By default \, each player listens to
+the notes of the person before them. \; You will see the box light
+up red to indicate that data has been received. However \, part \;
+of the fun of Peepums is listening to multiple players \, creating
+short-circuits \, etc. \; To toggle listening to a different player
+\, press his or her number or letter. The \; number 0 clears all connections.
+\; \; 6 Acknowledgements \; Peepums is inspired by "Waxlips" by the
+Hub \, and uses synth objects from rjlib.;
+#X obj 32 511 cnv 15 170 20 empty empty Instructions 34 12 0 14 -191407
+-66577 0;

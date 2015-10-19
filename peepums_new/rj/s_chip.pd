@@ -1,4 +1,4 @@
-#N canvas 140 16 982 598 10;
+#N canvas 138 56 982 598 10;
 #X obj 601 96 inlet;
 #X obj 149 387 mtof;
 #X obj 149 38 inlet;
@@ -6,7 +6,7 @@
 #X obj 149 428 sqrt;
 #X obj 149 407 / 2000;
 #X obj 189 196 s \$0-envelopes;
-#N canvas 0 0 262 827 dispatchers 0;
+#N canvas 0 50 262 827 dispatchers 0;
 #X obj 97 -53 u_dispatch \$0 env1a;
 #X obj 97 -29 u_dispatch \$0 env1d;
 #X obj 97 -8 u_dispatch \$0 env1s;
@@ -85,7 +85,7 @@
 #X obj 149 468 s~ \$0-keyscale;
 #X obj 601 141 route save;
 #X obj 601 197 outlet;
-#N canvas 0 0 901 408 envelopes 0;
+#N canvas 0 50 901 408 envelopes 0;
 #X obj 60 184 t a a b;
 #X obj 276 189 t a a b;
 #X obj 116 74 r \$0-env1a;
@@ -192,8 +192,8 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 674 386 * 3;
 #X obj 674 404 sig~;
 #X obj 579 442 *~;
-#N canvas 0 0 246 735 8bitosc 0;
-#N canvas 0 0 370 298 dec2bin 0;
+#N canvas 0 50 246 735 8bitosc 0;
+#N canvas 0 50 370 298 dec2bin 0;
 #X obj 159 112 div 2;
 #X obj 199 111 mod 2;
 #X obj 169 75 t f f;
@@ -201,7 +201,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 94 121 sel 0;
 #X msg 59 105 0;
 #X obj 102 18 t b f b;
-#X msg 199 180 0 0 1 0 0 1 0 1;
+#X msg 199 180 0 1 1 0 0 0 0 1;
 #X obj 102 -5 clip 0 255;
 #X obj 94 140 t b b;
 #X obj 102 -28 inlet;
@@ -253,7 +253,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 20 247 *~;
 #X obj 33 134 sig~;
 #X obj 31 227 r~ \$0-keyscale;
-#N canvas 0 0 848 695 vibdel 0;
+#N canvas 0 50 848 695 vibdel 0;
 #X obj 392 194 f 0;
 #X msg 392 219 0 \, 1 \$1;
 #X obj 409 161 * 3000;
@@ -278,7 +278,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 21 324 +~;
 #X obj 33 117 * 100;
 #X obj 21 26 r \$0-mod1a;
-#N canvas 0 0 450 300 lfo 0;
+#N canvas 0 50 450 300 lfo 0;
 #X obj 99 104 *~ -1;
 #X obj 77 155 min~;
 #X obj 99 129 +~ 1;
@@ -382,7 +382,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 666 312 *~;
 #X obj 684 291 sig~;
 #N canvas 182 50 494 651 8bitosc 0;
-#N canvas 0 0 370 298 dec2bin 0;
+#N canvas 0 50 370 298 dec2bin 0;
 #X obj 159 112 div 2;
 #X obj 199 111 mod 2;
 #X obj 169 75 t f f;
@@ -390,7 +390,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 94 121 sel 0;
 #X msg 59 105 0;
 #X obj 102 18 t b f b;
-#X msg 199 180 0 1 0 0 0 0 0 1;
+#X msg 199 180 0 1 0 1 0 1 0 1;
 #X obj 102 -5 clip 0 255;
 #X obj 94 140 t b b;
 #X obj 102 -28 inlet;
@@ -442,7 +442,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 22 215 *~;
 #X obj 42 105 sig~;
 #X obj 51 215 r~ \$0-keyscale;
-#N canvas 0 0 848 695 vibdel 0;
+#N canvas 0 50 848 695 vibdel 0;
 #X obj 392 194 f 0;
 #X msg 392 219 0 \, 1 \$1;
 #X obj 409 161 * 3000;
@@ -466,7 +466,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X restore 42 156 pd vibdel;
 #X obj 21 364 +~;
 #X obj 42 88 * 100;
-#N canvas 0 0 450 300 lfo 0;
+#N canvas 0 50 450 300 lfo 0;
 #X obj 99 104 *~ -1;
 #X obj 77 155 min~;
 #X obj 99 129 +~ 1;
@@ -515,7 +515,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 200 133 s \$0-t2;
 #X obj 20 482 tabread~ \$0-t2;
 #X obj 39 331 *~;
-#N canvas 0 0 450 300 oct 0;
+#N canvas 0 50 450 300 oct 0;
 #X obj 106 164 sig~;
 #X obj 105 73 * 4;
 #X obj 105 91 - 2;
@@ -596,7 +596,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 378 337 *~;
 #X obj 665 248 r~ \$0-e3;
 #X obj 74 246 r \$0-osc3a;
-#N canvas 0 0 329 545 ssp 0;
+#N canvas 1 59 329 545 ssp 0;
 #X obj 148 429 f;
 #X obj 140 316 ==;
 #X obj 111 317 <;
@@ -608,9 +608,9 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 143 337 sel 1;
 #X obj 183 337 sel 1;
 #X obj 84 415 f;
-#X obj 107 277 f;
-#X obj 85 255 t b b;
-#X obj 87 211 t b f;
+#X obj 108 205 f;
+#X obj 86 183 t b b;
+#X obj 88 128 t b f;
 #X obj 168 394 t f f;
 #X obj 217 295 -;
 #X obj 217 314 abs;
@@ -621,13 +621,14 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X obj 223 443 f 1;
 #X obj 192 443 f -1;
 #X obj 214 354 int;
-#X obj 87 235 metro 30;
+#X obj 88 163 metro 30;
 #X obj 217 333 / 2;
 #X obj 215 375 + 1;
-#X obj 88 187 inlet note;
+#X obj 89 104 inlet note;
 #X obj 64 497 outlet notes;
-#X text 87 164 self scaling (constant time glissando);
+#X text 88 81 self scaling (constant time glissando);
 #X text 108 482 ajf;
+#X obj 107 257 int;
 #X connect 0 0 4 1;
 #X connect 1 0 8 0;
 #X connect 2 0 7 0;
@@ -640,7 +641,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X connect 8 0 5 0;
 #X connect 9 0 21 0;
 #X connect 10 0 4 0;
-#X connect 11 0 18 0;
+#X connect 11 0 31 0;
 #X connect 12 0 10 0;
 #X connect 12 1 11 0;
 #X connect 13 0 24 0;
@@ -668,6 +669,7 @@ License along with this program. If not \, see <http://www.gnu.org/licenses/>.
 #X connect 25 0 23 0;
 #X connect 26 0 19 0;
 #X connect 27 0 13 0;
+#X connect 31 0 18 0;
 #X restore 149 355 pd ssp;
 #X text 667 105 chip tune synth;
 #X text 588 457 ajf 2010;

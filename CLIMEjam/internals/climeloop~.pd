@@ -21,7 +21,7 @@
 #X msg 528 253 read -resize \$1 \$2-loop;
 #X obj 528 202 openpanel;
 #X obj 461 37 loadbang;
-#X msg 540 105 1;
+#X msg 703 132 1;
 #X obj 228 250 f;
 #X msg 441 320 \$1 25;
 #X msg 488 330 0 25;
@@ -38,18 +38,18 @@
 #X obj 86 207 t b a;
 #X msg 48 296 \; \$1-canvas label \$2;
 #X obj 55 268 pack f symbol;
-#X obj 248 101 tgl 15 0 empty empty empty 17 7 0 10 -258699 -1 -262144
-0 1;
+#X obj 248 101 tgl 15 0 empty empty empty 17 7 0 10 -24198 -262144
+-262144 1 1;
 #X obj 264 101 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 249 127 vradio 13 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 3;
+-1 -1 2;
 #X text 263 125 4;
 #X text 263 139 8;
 #X text 263 152 16;
 #N canvas 0 50 450 250 (subpatch) 0;
-#X array \$0-loop 132353 float 2;
-#X coords 0 1 132353 -1 130 40 2 0 0;
+#X array \$0-loop 525850 float 2;
+#X coords 0 1 525850 -1 130 40 1 0 0;
 #X restore 105 135 graph;
 #X obj 598 349 r /nanoKontrol/r/\$1;
 #X obj 596 373 sel 127;
@@ -75,7 +75,8 @@
 #X obj 265 247 sel 0 1;
 #X obj 565 22 loadbang;
 #X obj 564 61 t b a b b b;
-#X msg 638 96 0;
+#X msg 638 96 1;
+#X obj 698 106 loadbang;
 #X connect 0 0 8 1;
 #X connect 1 0 3 1;
 #X connect 2 0 10 0;
@@ -98,7 +99,7 @@
 #X connect 19 0 3 0;
 #X connect 19 0 31 0;
 #X connect 20 0 46 0;
-#X connect 21 0 37 0;
+#X connect 21 0 55 0;
 #X connect 22 0 23 0;
 #X connect 23 0 11 0;
 #X connect 24 0 11 0;
@@ -148,4 +149,5 @@
 #X connect 66 3 24 0;
 #X connect 66 4 67 0;
 #X connect 67 0 37 0;
+#X connect 68 0 21 0;
 #X coords 0 -1 1 1 200 100 1 100 100;

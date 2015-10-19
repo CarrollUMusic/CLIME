@@ -1,1 +1,5 @@
 .DS_Store
+application.linux64
+application.windows32
+application.linux32
+application.macosx

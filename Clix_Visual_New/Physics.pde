@@ -469,7 +469,7 @@ public class ParticleSystem
       this.integrator = new RungeKuttaIntegrator( this );
     else
       if ( which==MODIFIED_EULER )
-      this.integrator = new ModifiedEulerIntegrator( this );
+        this.integrator = new ModifiedEulerIntegrator( this );
   }
 
   public final void setGravity( float x, float y, float z ) { 

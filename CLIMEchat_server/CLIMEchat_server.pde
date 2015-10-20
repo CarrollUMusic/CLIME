@@ -1,11 +1,13 @@
 import processing.net.*;
 import hypermedia.net.*;
 import java.net.Inet4Address;
+import java.io.*;
 
 Server chatServer;
 Server pdServer;
 UDP chatBroadcast, pdBroadcast;
 String myip;
+int broadcastCue = 0;
 
 void setup()
 {
@@ -17,21 +19,39 @@ void setup()
   pdBroadcast.listen(false);
   chatBroadcast.listen(false);
   myip = pdBroadcast.address();
-  try {
-    myip=java.net.InetAddress.getLocalHost().getHostAddress()+";\n";
-  } 
-  catch(Exception e)
+  if (match("Linux", System.getProperty("os.name")) != null)
   {
-  }
-  if (myip==null || myip.equals("127.0.1.1;\n") || myip.equals("127.0.0.1;\n"))
+    try
+    {
+      ProcessBuilder pb = new ProcessBuilder("sh", dataPath("hostname.sh"));
+      Process p = pb.start();
+      InputStream is = p.getInputStream();
+      BufferedReader br = new BufferedReader(new InputStreamReader(is));
+      String line = null;
+      while ((line = br.readLine()) != null)
+      {
+        myip = line;
+      }
+      int r = p.waitFor();
+    } 
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+  } else
   {
-    String[] lines = loadStrings(System.getProperty("user.home")+"/.myip");
-    String[] temp_ips = split(lines[0], ' ');
-    myip = temp_ips[0]+";\n";
+    try {
+      myip=java.net.InetAddress.getLocalHost().getHostAddress()+";\n";
+    } 
+    catch(Exception e)
+    {
+      e.printStackTrace();
+    }
   }
   println(myip);
   textAlign(CENTER);
   noStroke();
+  frameRate(1000);
 }
 
 void draw()
@@ -65,8 +85,9 @@ void draw()
     }
   }
 
-  if (frameCount%600==0)
+  if (millis()/5000 > broadcastCue)
   {
+    broadcastCue++;
     pdBroadcast.send(myip, "255.255.255.255", 13034);
     chatBroadcast.send(myip, "255.255.255.255", 13035);
   }

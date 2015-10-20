@@ -30,7 +30,7 @@ void setup()
       String line = null;
       while ((line = br.readLine()) != null)
       {
-        myip = line;
+        myip = split(line,' ')[0]+";\n";
       }
       int r = p.waitFor();
     } 
@@ -88,6 +88,7 @@ void draw()
   if (millis()/5000 > broadcastCue)
   {
     broadcastCue++;
+    println(myip);
     pdBroadcast.send(myip, "255.255.255.255", 13034);
     chatBroadcast.send(myip, "255.255.255.255", 13035);
   }

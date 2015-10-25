@@ -1,6 +1,6 @@
-#N canvas 378 316 284 78 10;
+#N canvas 374 350 296 108 10;
 #X declare -path ../SyncJams/pure-data;
-#N canvas 656 139 586 431 internals 1;
+#N canvas 654 142 586 431 internals 0;
 #X obj 174 17 key;
 #X obj 207 107 mtof;
 #X obj 175 40 moses 0;
@@ -131,7 +131,7 @@
 #X restore 201 16 pd coded-keys;
 #X msg 324 325 \; pd dsp 1 \; impulse 0 1 \; typeaway-r 1;
 #X obj 63 369 declare -path ../SyncJams/pure-data;
-#N canvas 408 359 565 359 network-connection 1;
+#N canvas 406 362 565 359 network-connection 0;
 #X obj 42 27 inlet;
 #X msg 301 79 disconnect;
 #X obj 222 106 == 0;

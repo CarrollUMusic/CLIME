@@ -1,64 +1,57 @@
-#N canvas 147 159 970 615 10;
+#N canvas 283 80 953 619 10;
 #X declare -path ../SyncJams/pure-data;
 #X declare -path internals/rj;
-#X obj 705 52 cnv 15 201 497 empty empty empty 20 12 0 14 -99865 -66577
-0;
-#X obj 740 128 vsl 40 380 0 0.75 0 0 k-mastervol k-mastervol-gui empty
-0 -9 0 10 -4034 -1 -1 37900 1;
-#X obj 835 412 vu 15 120 pvu-R empty -1 -8 0 10 -66577 -1 1 0;
-#X obj 818 412 vu 15 120 pvu-L empty -1 -8 0 10 -66577 -1 0 0;
-#X obj 66 140 vsl 40 400 0 20 0 0 k-density k-density-gui empty 0 -9
-0 10 -232576 -1 -1 16400 1;
-#X obj 236 52 hradio 50 1 0 4 k-soundbank k-soundbank-gui empty 0 -8
-0 10 -261234 -1 -1 0;
-#X obj 154 140 vsl 40 400 0 1 0 0 k-ringmod k-ringmod-gui empty 0 -9
-0 10 -203904 -1 -1 39900 1;
-#X obj 241 141 vradio 68 1 0 6 k-echotime k-echotime-gui empty 0 -8
-0 10 -204800 -1 -1 5;
-#X obj 348 140 vsl 40 400 0 0.95 0 0 k-echofeedback k-echofeedback-gui
-empty 0 -9 0 10 -204800 -1 -1 26000 1;
-#X obj 436 140 vsl 40 400 800 8000 0 0 k-filter k-filter-gui empty
-0 -9 0 10 -204786 -1 -1 6500 1;
-#X obj 525 140 vsl 40 400 16 1 0 0 k-bitcrush k-bitcrush-gui empty
-0 -9 0 10 -261682 -1 -1 0 1;
-#X obj 613 140 vsl 40 400 0 1 0 0 k-revmix k-revmix-gui empty 0 -9
-0 10 -262130 -1 -1 6700 1;
-#X obj 442 52 hradio 50 1 0 5 k-harmony k-harmony-gui empty 0 -8 0
-10 -232576 -1 -1 1;
-#X obj 30 52 hradio 50 1 0 4 k-tempo k-tempo-gui empty 0 -8 0 10 -204786
--1 -1 2;
-#X obj 810 325 tgl 50 0 k-metro k-metro-gui empty 17 7 0 10 -4034 -1
--1 1 1;
-#X obj 722 59 nbx 3 50 0 999 0 0 empty countdown empty 0 -8 0 48 -1
+#X obj -1 0 cnv 15 950 600 empty empty SNAPPER 400 20 0 30 -162280
+-66577 0;
+#N canvas 0 22 423 684 master-controls 0;
+#X obj 101 101 cnv 15 201 497 empty empty empty 20 12 0 14 -128992
+-66577 0;
+#X obj 128 203 vsl 40 380 0 0.75 0 0 k-mastervol k-mastervol-gui VOLUME
+0 -9 0 10 -4034 -1 -1 17900 1;
+#X obj 231 461 vu 15 120 pvu-R empty -1 -8 0 10 -66577 -1 1 0;
+#X obj 214 461 vu 15 120 pvu-L empty -1 -8 0 10 -66577 -1 0 0;
+#X obj 206 374 tgl 50 0 k-metro k-metro-gui METRONOME 0 -7 0 10 -4034
+-1 -1 1 1;
+#X obj 118 108 nbx 3 50 0 999 0 0 empty countdown empty 0 -8 0 48 -1
 -258113 -1 0 256;
-#X obj 807 161 bng 70 250 50 0 k-broadcast k-broadcast-gui empty 17
-7 0 10 -24198 -1 -262144;
-#X obj 883 62 tgl 15 0 empty connected empty 17 7 0 10 -258113 -262144
+#X obj 201 197 bng 70 250 50 0 k-broadcast k-broadcast-gui SNAP! 22
+37 0 10 -24198 -1 -262144;
+#X obj 279 111 tgl 15 0 empty connected empty 17 7 0 10 -258113 -262144
 -1 0 1;
-#X text 29 33 TEMPO;
-#X text 238 33 SOUNDBANK;
-#X text 443 33 HARMONY;
-#X text 242 120 ECHO LENGTH;
-#X text 343 120 ECHO AMT;
-#X text 436 120 FILTER;
-#X text 716 107 COUNTDOWN UNTIL ELIGIBILITY;
-#X text 809 234 BROADCAST!;
-#X text 729 517 MASTER VOL;
-#X text 807 305 METRONOME;
-#X text 736 31 SNAPPER by Joel Matthys;
+#X text 126 158 SECS UNTIL YOU CAN SNAP;
+#X coords 0 -1 1 1 203 499 2 100 100;
+#X restore 703 43 pd master-controls;
+#N canvas 244 109 851 614 vsliders 0;
+#X obj 116 132 vsl 40 400 0 20 0 0 k-density k-density-gui EVOLUTION
+0 -9 0 10 -228856 -1 -1 39900 1;
+#X obj 204 132 vsl 40 400 0 1 0 0 k-ringmod k-ringmod-gui VOCODER 0
+-9 0 10 -191407 -1 -1 0 1;
+#X obj 289 130 vradio 67 1 0 6 k-echotime k-echotime-gui ECHO_RATE
+0 -8 0 10 -228856 -1 -1 0;
+#X obj 399 132 vsl 40 400 0 0.95 0 0 k-echofeedback k-echofeedback-gui
+ECHO_AMT 0 -9 0 10 -191407 -1 -1 0 1;
+#X obj 487 132 vsl 40 400 800 8000 0 0 k-filter k-filter-gui LOWPASS
+0 -9 0 10 -228856 -1 -1 39900 1;
+#X obj 576 132 vsl 40 400 16 1 0 0 k-bitcrush k-bitcrush-gui BITCRUSH
+0 -9 0 10 -191407 -1 -1 0 1;
+#X obj 664 132 vsl 40 400 0 1 0 0 k-revmix k-revmix-gui REVERB 0 -9
+0 10 -228856 -1 -1 0 1;
+#X coords 0 -1 1 1 625 450 2 100 100;
+#X restore 41 118 pd vsliders;
+#N canvas 0 22 884 336 radio-controls 0;
+#X obj 101 101 cnv 15 623 63 empty empty empty 20 12 0 14 -128992 -66577
+0;
+#X obj 313 118 hradio 40 1 0 4 k-soundbank k-soundbank-gui SOUNDBANK
+0 -8 0 10 -4034 -1 -1 2;
+#X obj 516 118 hradio 40 1 0 5 k-harmony k-harmony-gui HARMONY 0 -8
+0 10 -4034 -1 -1 1;
+#X obj 109 118 hradio 40 1 0 4 k-tempo k-tempo-gui TEMPO 0 -8 0 10
+-4034 -1 -1 2;
+#X coords 0 -1 1 1 625 65 2 100 100;
+#X restore 40 40 pd radio-controls;
 #N canvas 411 167 506 137 fine-tune 0;
 #X obj 39 60 hsl 400 30 0 130 0 0 k-finetune empty empty -2 -8 0 10
 -99865 -262144 -1 0 1;
 #X text 89 26 FINE TUNE TIMING - drag to alter beat placement;
 #X restore 699 565 pd fine-tune;
-#X text 245 165 sixteenth;
-#X text 251 233 eighth;
-#X text 253 302 quarter;
-#X text 265 373 half;
-#X text 261 437 1 bar;
-#X text 256 503 2 bars;
 #X obj 783 565 internals/load-samples;
-#X text 520 120 BITCRUSH;
-#X text 613 120 REVERB;
-#X text 151 120 VOCODER;
-#X text 52 120 VARIABILITY;

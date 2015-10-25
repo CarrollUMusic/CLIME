@@ -1,0 +1,12 @@
+#N canvas 1 59 450 300 10;
+#X obj 117 82 mtof;
+#X obj 118 110 phasor~;
+#X obj 119 138 *~ 2;
+#X obj 119 163 -~ 1;
+#X obj 120 197 throw~ harmony-synth;
+#X obj 117 47 r harmony-synth-\$1;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 5 0 0 0;

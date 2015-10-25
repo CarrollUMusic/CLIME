@@ -1,4 +1,4 @@
-#N canvas 411 259 521 453 10;
+#N canvas 409 262 521 453 10;
 #X obj 24 32 inlet~;
 #X obj 23 298 outlet~;
 #X obj 118 298 outlet~;
@@ -815,4 +815,4 @@ excursion 0.11811 \;;
 #X connect 15 0 11 0;
 #X connect 16 0 11 0;
 #X connect 17 0 11 0;
-#X connect 21 0 17 0;
+#X connect 21 0 15 0;

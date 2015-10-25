@@ -18,7 +18,6 @@ void setup()
   chatBroadcast = new UDP(this, 13037);
   pdBroadcast.listen(false);
   chatBroadcast.listen(false);
-  myip = pdBroadcast.address();
   if (match("Linux", System.getProperty("os.name")) != null)
   {
     try
@@ -30,7 +29,7 @@ void setup()
       String line = null;
       while ((line = br.readLine()) != null)
       {
-        myip = split(line,' ')[0]+";\n";
+        myip = split(line, ' ')[0]+";\n";
       }
       int r = p.waitFor();
     } 
@@ -38,14 +37,18 @@ void setup()
     {
       e.printStackTrace();
     }
-  } else
+  } else // not Linux
   {
-    try {
-      myip=java.net.InetAddress.getLocalHost().getHostAddress()+";\n";
-    } 
-    catch(Exception e)
+    myip = pdBroadcast.address();
+    if (myip==null)
     {
-      e.printStackTrace();
+      try {
+        myip=java.net.InetAddress.getLocalHost().getHostAddress()+";\n";
+      } 
+      catch(Exception e)
+      {
+        e.printStackTrace();
+      }
     }
   }
   println(myip);

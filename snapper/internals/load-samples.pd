@@ -489,7 +489,7 @@ mode\$1, f 62;
 #X connect 11 0 12 0;
 #X connect 12 0 1 1;
 #X restore 574 147 pd countdown;
-#N canvas 28 237 654 371 network-connection 0;
+#N canvas 28 237 654 371 network-connection 1;
 #X obj 25 172 s k-tempo-gui;
 #X obj 39 199 s k-soundbank-gui;
 #X obj 59 227 s k-harmony-gui;
@@ -608,21 +608,18 @@ mode\$1, f 62;
 #X obj 413 55 r countdown;
 #X obj 351 124 t b b;
 #X obj 252 148 s new-countdown;
-#X obj 352 34 r k-broadcast;
 #X msg 254 178 send /snapper \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9 \$10
 ;
 #X obj 62 249 outlet;
-#X obj 285 69 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X connect 0 0 7 0;
+#X obj 352 34 lockout k-broadcast;
+#X connect 0 0 6 0;
 #X connect 1 0 4 0;
 #X connect 2 0 1 1;
 #X connect 3 0 2 0;
 #X connect 4 0 5 0;
 #X connect 4 1 0 0;
-#X connect 6 0 1 0;
-#X connect 7 0 8 0;
-#X connect 9 0 4 0;
+#X connect 6 0 7 0;
+#X connect 8 0 1 0;
 #X restore 573 169 pd broadcast-message;
 #N canvas 1 58 450 300 pvu 0;
 #X obj 107 29 inlet~;
@@ -966,13 +963,13 @@ mode\$1, f 62;
 #X obj 66 101 tgl 15 0 nada \$0-tog-1 empty 17 7 0 10 -262144 -1 -1
 1 1;
 #X obj 81 101 tgl 15 0 nada \$0-tog-2 empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X obj 96 101 tgl 15 0 nada \$0-tog-3 empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 111 101 tgl 15 0 nada \$0-tog-4 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 126 101 tgl 15 0 nada \$0-tog-5 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 141 101 tgl 15 0 nada \$0-tog-6 empty 17 7 0 10 -262144 -1 -1
 1 1;
 #X obj 156 101 tgl 15 0 nada \$0-tog-7 empty 17 7 0 10 -262144 -1 -1
@@ -982,17 +979,17 @@ mode\$1, f 62;
 #X obj 186 101 tgl 15 0 nada \$0-tog-9 empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 201 101 tgl 15 0 nada \$0-tog-10 empty 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X obj 216 101 tgl 15 0 nada \$0-tog-11 empty 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X obj 231 101 tgl 15 0 nada \$0-tog-12 empty 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X obj 246 101 tgl 15 0 nada \$0-tog-13 empty 17 7 0 10 -262144 -1
 -1 1 1;
 #X obj 261 101 tgl 15 0 nada \$0-tog-14 empty 17 7 0 10 -262144 -1
 -1 0 1;
 #X obj 276 101 tgl 15 0 nada \$0-tog-15 empty 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 353 29 t b b;
 #X obj 354 4 r \$0-register-metro;
 #X connect 0 0 2 0;

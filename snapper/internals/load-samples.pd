@@ -469,10 +469,10 @@ mode\$1, f 62;
 #X msg 262 102 0;
 #X obj 112 180 <= 0;
 #X obj 113 209 sel 0 1;
-#X msg 88 245 \; k-broadcast-gui color 13;
-#X msg 259 242 \; k-broadcast-gui color 16;
 #X obj 255 31 random 120;
 #X obj 256 55 + 180;
+#X msg 56 244 \; k-broadcast-gui color 13 12 12;
+#X msg 259 242 \; k-broadcast-gui color 16 12 12;
 #X connect 0 0 1 0;
 #X connect 1 0 4 0;
 #X connect 2 0 0 0;
@@ -481,15 +481,15 @@ mode\$1, f 62;
 #X connect 4 0 6 0;
 #X connect 4 0 9 0;
 #X connect 5 0 0 0;
-#X connect 7 0 13 0;
+#X connect 7 0 11 0;
 #X connect 8 0 1 1;
 #X connect 9 0 10 0;
-#X connect 10 0 11 0;
-#X connect 10 1 12 0;
-#X connect 13 0 14 0;
-#X connect 14 0 1 1;
+#X connect 10 0 13 0;
+#X connect 10 1 14 0;
+#X connect 11 0 12 0;
+#X connect 12 0 1 1;
 #X restore 574 147 pd countdown;
-#N canvas 28 237 539 320 network-connection 0;
+#N canvas 28 237 654 371 network-connection 0;
 #X obj 25 172 s k-tempo-gui;
 #X obj 39 199 s k-soundbank-gui;
 #X obj 59 227 s k-harmony-gui;
@@ -501,12 +501,11 @@ mode\$1, f 62;
 #X obj 303 199 s k-revmix-gui;
 #X obj 25 122 unpack f f f f f f f f f f;
 #X obj 221 54 netsend;
-#X obj 221 79 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 221 79 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 222 25 inlet;
-#X obj 50 98 route /snapper;
+#X obj 25 98 route /snapper;
 #X msg 301 79 disconnect;
-#X obj 247 132 s connected;
 #X obj 262 173 s k-bitcrush-gui;
 #X msg 14 279 \; lockout-countdown 15;
 #X msg 283 31 disconnect \, connect \$1 13033;
@@ -514,8 +513,11 @@ mode\$1, f 62;
 #X obj 278 106 == 0;
 #X obj 283 -38 inlet;
 #X obj 283 8 symbol;
+#X obj 433 121 sel 0 1;
+#X msg 443 189 \; connected 1 \, color 16 12 12;
+#X msg 431 155 \; connected 0 \, color 13 12 12;
 #X connect 9 0 0 0;
-#X connect 9 0 17 0;
+#X connect 9 0 16 0;
 #X connect 9 1 1 0;
 #X connect 9 2 2 0;
 #X connect 9 3 3 0;
@@ -523,20 +525,22 @@ mode\$1, f 62;
 #X connect 9 5 5 0;
 #X connect 9 6 6 0;
 #X connect 9 7 7 0;
-#X connect 9 8 16 0;
+#X connect 9 8 15 0;
 #X connect 9 9 8 0;
 #X connect 10 0 11 0;
 #X connect 10 1 13 0;
-#X connect 11 0 15 0;
-#X connect 11 0 20 0;
+#X connect 11 0 19 0;
+#X connect 11 0 22 0;
 #X connect 12 0 10 0;
 #X connect 13 0 9 0;
 #X connect 14 0 10 0;
-#X connect 18 0 10 0;
-#X connect 19 0 22 0;
-#X connect 20 0 19 1;
-#X connect 21 0 19 0;
-#X connect 22 0 18 0;
+#X connect 17 0 10 0;
+#X connect 18 0 21 0;
+#X connect 19 0 18 1;
+#X connect 20 0 18 0;
+#X connect 21 0 17 0;
+#X connect 22 0 24 0;
+#X connect 22 1 23 0;
 #X restore 573 191 pd network-connection;
 #N canvas 416 203 743 300 broadcast-message 0;
 #N canvas 90 350 450 300 controls-to-send 0;
@@ -957,38 +961,38 @@ mode\$1, f 62;
 #X obj 511 91 f \$0;
 #X obj 510 61 loadbang;
 #X obj 51 101 tgl 15 0 nada \$0-tog-0 empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X msg 386 218 \; \$3-tog-\$2 \$1;
 #X obj 66 101 tgl 15 0 nada \$0-tog-1 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 81 101 tgl 15 0 nada \$0-tog-2 empty 17 7 0 10 -262144 -1 -1
 1 1;
 #X obj 96 101 tgl 15 0 nada \$0-tog-3 empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X obj 111 101 tgl 15 0 nada \$0-tog-4 empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X obj 126 101 tgl 15 0 nada \$0-tog-5 empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 141 101 tgl 15 0 nada \$0-tog-6 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 156 101 tgl 15 0 nada \$0-tog-7 empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 171 101 tgl 15 0 nada \$0-tog-8 empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X obj 186 101 tgl 15 0 nada \$0-tog-9 empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 201 101 tgl 15 0 nada \$0-tog-10 empty 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 216 101 tgl 15 0 nada \$0-tog-11 empty 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 231 101 tgl 15 0 nada \$0-tog-12 empty 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 246 101 tgl 15 0 nada \$0-tog-13 empty 17 7 0 10 -262144 -1
 -1 1 1;
 #X obj 261 101 tgl 15 0 nada \$0-tog-14 empty 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X obj 276 101 tgl 15 0 nada \$0-tog-15 empty 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X obj 353 29 t b b;
 #X obj 354 4 r \$0-register-metro;
 #X connect 0 0 2 0;
@@ -1128,7 +1132,8 @@ mode\$1, f 62;
 #X restore 286 53 pd turing-machine;
 #X msg 82 33 \; k-density-gui 20 \; k-tempo-gui 2 \; k-echotime-gui
 0 \; k-filter-gui 8000 \; k-bitcrush-gui 16 \; k-revmix-gui 0 \; k-ringmod-gui
-0 \; k-harmony-gui 1 \; k-metro-gui 1 \; pd dsp 1;
+0 \; k-harmony-gui 1 \; k-metro-gui 1 \; connected color 13 12 12 \;
+pd dsp 1;
 #X connect 0 0 4 0;
 #X connect 3 0 21 0;
 #X connect 3 1 22 0;

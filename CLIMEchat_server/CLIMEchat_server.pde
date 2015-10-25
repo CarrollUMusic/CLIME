@@ -51,7 +51,6 @@ void setup()
       }
     }
   }
-  println(myip);
   textAlign(CENTER);
   noStroke();
   frameRate(1000);
@@ -61,8 +60,8 @@ void draw()
 {
   background(0);
   fill(255);
-  text("CLIME Chat Server", width/2, height/2);
-  text("running", width/2, height/2 + 20);
+  text("CLIME Chat Server", width/2, height/2 - 20);
+  text("running from " + myip, width/2, height/2);
   Client thisClient = chatServer.available();
   if (thisClient != null)
   {
@@ -91,7 +90,6 @@ void draw()
   if (millis()/5000 > broadcastCue)
   {
     broadcastCue++;
-    println(myip);
     pdBroadcast.send(myip, "255.255.255.255", 13034);
     chatBroadcast.send(myip, "255.255.255.255", 13035);
   }

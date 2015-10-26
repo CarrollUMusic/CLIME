@@ -1,4 +1,4 @@
-#N canvas 141 288 835 534 10;
+#N canvas 139 240 835 534 10;
 #X declare -path ../SyncJams/pure-data;
 #X declare -path internals/rj;
 #N canvas 299 192 450 300 echo 0;
@@ -489,7 +489,7 @@ mode\$1, f 62;
 #X connect 11 0 12 0;
 #X connect 12 0 1 1;
 #X restore 574 147 pd countdown;
-#N canvas 28 237 654 371 network-connection 1;
+#N canvas 28 237 654 371 network-connection 0;
 #X obj 25 172 s k-tempo-gui;
 #X obj 39 199 s k-soundbank-gui;
 #X obj 59 227 s k-harmony-gui;
@@ -501,7 +501,7 @@ mode\$1, f 62;
 #X obj 303 199 s k-revmix-gui;
 #X obj 25 122 unpack f f f f f f f f f f;
 #X obj 221 54 netsend;
-#X obj 221 79 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 221 79 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 222 25 inlet;
 #X obj 25 98 route /snapper;
@@ -776,7 +776,7 @@ mode\$1, f 62;
 #X connect 0 0 1 0;
 #X restore 709 109 pd get-server-ip;
 #X obj 51 448 declare -path internals/rj;
-#N canvas 1 65 700 397 apply-harmony 0;
+#N canvas 1 71 700 397 apply-harmony 0;
 #X obj 107 22 r harmony-changed;
 #X obj 108 58 t b b;
 #X msg 133 91 0;
@@ -791,7 +791,7 @@ mode\$1, f 62;
 #X obj 241 27 loadbang;
 #X obj 242 53 del 50;
 #X obj 404 39 phasor~;
-#N canvas 411 192 450 300 melody 0;
+#N canvas 409 195 450 300 melody 1;
 #X floatatom 178 148 5 0 0 0 - - -, f 5;
 #X obj 178 202 mtof;
 #X obj 178 105 tabread harmony;
@@ -799,7 +799,7 @@ mode\$1, f 62;
 #X obj 178 83 random 8;
 #X obj 178 62 r \$0-metro;
 #X obj 178 229 outlet;
-#X obj 178 171 + 12;
+#X obj 178 171 + 24;
 #X connect 0 0 7 0;
 #X connect 1 0 6 0;
 #X connect 2 0 3 0;
@@ -958,38 +958,38 @@ mode\$1, f 62;
 #X obj 511 91 f \$0;
 #X obj 510 61 loadbang;
 #X obj 51 101 tgl 15 0 nada \$0-tog-0 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X msg 386 218 \; \$3-tog-\$2 \$1;
 #X obj 66 101 tgl 15 0 nada \$0-tog-1 empty 17 7 0 10 -262144 -1 -1
 1 1;
 #X obj 81 101 tgl 15 0 nada \$0-tog-2 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 96 101 tgl 15 0 nada \$0-tog-3 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 111 101 tgl 15 0 nada \$0-tog-4 empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X obj 126 101 tgl 15 0 nada \$0-tog-5 empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X obj 141 101 tgl 15 0 nada \$0-tog-6 empty 17 7 0 10 -262144 -1 -1
 1 1;
 #X obj 156 101 tgl 15 0 nada \$0-tog-7 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 171 101 tgl 15 0 nada \$0-tog-8 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 186 101 tgl 15 0 nada \$0-tog-9 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 201 101 tgl 15 0 nada \$0-tog-10 empty 17 7 0 10 -262144 -1
 -1 0 1;
 #X obj 216 101 tgl 15 0 nada \$0-tog-11 empty 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 231 101 tgl 15 0 nada \$0-tog-12 empty 17 7 0 10 -262144 -1
 -1 0 1;
 #X obj 246 101 tgl 15 0 nada \$0-tog-13 empty 17 7 0 10 -262144 -1
 -1 1 1;
 #X obj 261 101 tgl 15 0 nada \$0-tog-14 empty 17 7 0 10 -262144 -1
--1 0 1;
-#X obj 276 101 tgl 15 0 nada \$0-tog-15 empty 17 7 0 10 -262144 -1
 -1 1 1;
+#X obj 276 101 tgl 15 0 nada \$0-tog-15 empty 17 7 0 10 -262144 -1
+-1 0 1;
 #X obj 353 29 t b b;
 #X obj 354 4 r \$0-register-metro;
 #X connect 0 0 2 0;

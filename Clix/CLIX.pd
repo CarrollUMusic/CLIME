@@ -1,6 +1,6 @@
-#N canvas 374 350 296 108 10;
+#N canvas 370 354 302 201 10;
 #X declare -path ../SyncJams/pure-data;
-#N canvas 654 142 586 431 internals 0;
+#N canvas 648 148 586 431 internals 0;
 #X obj 174 17 key;
 #X obj 207 107 mtof;
 #X obj 175 40 moses 0;
@@ -96,8 +96,6 @@
 #X obj 306 168 t f f;
 #X obj 308 294 loadbang;
 #X obj 320 12 table impulse 1;
-#X obj 208 65 spigot;
-#X obj 240 39 r \$0-typeaway;
 #X obj 280 169 % 2;
 #X msg 294 142 4;
 #N canvas 268 207 450 300 coded-keys 0;
@@ -129,7 +127,6 @@
 #X connect 9 5 10 0;
 #X connect 10 0 4 0;
 #X restore 201 16 pd coded-keys;
-#X msg 324 325 \; pd dsp 1 \; impulse 0 1 \; typeaway-r 1;
 #X obj 63 369 declare -path ../SyncJams/pure-data;
 #N canvas 406 362 565 359 network-connection 0;
 #X obj 42 27 inlet;
@@ -284,41 +281,56 @@
 #X connect 17 0 16 0;
 #X connect 18 0 0 2;
 #X restore 433 255 pd one_chan;
+#X obj 57 193 random 128;
+#X msg 56 222 \; clix-color color \$1 0 0;
+#X floatatom 24 279 5 0 0 0 - - -, f 5;
+#X msg 30 158 0;
+#X obj 34 105 loadbang;
+#X msg 95 149 bang;
+#X msg 324 325 \; pd dsp 1 \; impulse 0 1;
+#X obj 262 41 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 224 66 spigot 1;
 #X connect 0 0 2 0;
 #X connect 1 0 7 0;
-#X connect 2 1 14 0;
+#X connect 2 1 33 0;
 #X connect 3 0 1 0;
-#X connect 3 0 21 0;
+#X connect 3 0 18 0;
+#X connect 3 0 30 0;
 #X connect 5 0 4 0;
 #X connect 6 0 5 0;
-#X connect 6 1 25 0;
-#X connect 6 2 26 0;
-#X connect 6 3 27 0;
+#X connect 6 1 22 0;
+#X connect 6 2 23 0;
+#X connect 6 3 24 0;
 #X connect 7 0 8 0;
 #X connect 7 1 10 1;
 #X connect 8 0 9 0;
-#X connect 9 0 16 0;
+#X connect 9 0 14 0;
 #X connect 10 0 6 0;
 #X connect 11 0 8 1;
 #X connect 11 1 10 0;
-#X connect 12 0 19 0;
-#X connect 14 0 3 0;
+#X connect 12 0 31 0;
+#X connect 14 0 11 0;
 #X connect 15 0 14 1;
-#X connect 16 0 11 0;
-#X connect 17 0 16 1;
-#X connect 18 0 14 0;
-#X connect 22 0 23 0;
-#X connect 23 0 24 0;
-#X connect 23 1 17 0;
-#X connect 24 0 16 1;
-#X connect 25 0 4 1;
-#X connect 26 0 4 2;
-#X connect 27 0 4 3;
-#X restore 19 339 pd internals;
-#X obj 27 53 tgl 15 0 \$0-typeaway typeaway-r empty 17 7 0 10 -262144
--1 -1 1 1;
-#X text 49 53 uncheck to use keyboard silently;
-#X text 30 14 CLIX, f 5;
-#X obj 248 5 tgl 15 0 \$0-4chan 4chan-r empty 17 7 0 10 -262144 -1
--1 0 1;
-#X text 187 6 4 channel;
+#X connect 16 0 33 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 20 1 15 0;
+#X connect 21 0 14 1;
+#X connect 22 0 4 1;
+#X connect 23 0 4 2;
+#X connect 24 0 4 3;
+#X connect 25 0 26 0;
+#X connect 25 0 27 0;
+#X connect 28 0 26 0;
+#X connect 29 0 28 0;
+#X connect 30 0 25 0;
+#X connect 32 0 33 1;
+#X connect 33 0 3 0;
+#X restore 10 177 pd internals;
+#X obj 1 1 cnv 15 300 200 empty empty CLIX 20 20 0 20 -16662 -262144
+0;
+#X obj 238 176 tgl 15 0 \$0-4chan 4chan-r 4_chan 17 7 0 10 -260097
+-1 -262144 0 1;
+#X obj 118 70 tgl 50 0 nada clix-color empty 17 7 0 10 -90881 -262144
+-262144 0 1;

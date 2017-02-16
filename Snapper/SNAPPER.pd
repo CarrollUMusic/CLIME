@@ -1,19 +1,17 @@
 #N canvas 255 85 969 620 10;
-#X declare -path ../SyncJams/pure-data;
-#X declare -path internals/rj;
 #X obj -1 0 cnv 15 950 600 empty empty SNAPPER 400 20 0 30 -162280
 -66577 0;
 #N canvas 0 50 423 684 master-controls 0;
 #X obj 101 101 cnv 15 201 497 empty empty empty 20 12 0 14 -128992
 -66577 0;
 #X obj 128 203 vsl 40 380 0 0.75 0 0 k-mastervol k-mastervol-gui VOLUME
-0 -9 0 10 -4034 -1 -1 29800 1;
+0 -9 0 10 -4034 -1 -1 27500 1;
 #X obj 231 461 vu 15 120 pvu-R empty -1 -8 0 10 -66577 -1 0 0;
 #X obj 214 461 vu 15 120 pvu-L empty -1 -8 0 10 -66577 -1 0 0;
 #X obj 206 374 tgl 50 0 k-metro k-metro-gui METRONOME 0 -7 0 10 -4034
 -1 -1 1 1;
 #X obj 118 108 nbx 3 50 0 999 0 0 empty countdown empty 0 -8 0 48 -1
--258113 -1 0 256 0;
+-258113 -1 0 256;
 #X obj 201 197 bng 70 250 50 0 k-broadcast k-broadcast-gui SNAP! 22
 37 0 10 -24198 -33289 -33289;
 #X obj 276 131 tgl 15 0 nada connected CON? 0 -9 0 10 -258699 -33289
@@ -25,28 +23,28 @@
 #X obj 116 132 vsl 40 400 0 20 0 0 k-density k-density-gui EVOLUTION
 0 -9 0 10 -228856 -1 -1 39900 1;
 #X obj 204 132 vsl 40 400 0 1 0 0 k-ringmod k-ringmod-gui VOCODER 0
--9 0 10 -191407 -1 -1 0 1;
+-9 0 10 -191407 -1 -1 39900 1;
 #X obj 289 130 vradio 67 1 0 6 k-echotime k-echotime-gui ECHO_RATE
-0 -8 0 10 -228856 -1 -1 0;
+0 -8 0 10 -228856 -1 -1 4;
 #X obj 399 132 vsl 40 400 0 0.95 0 0 k-echofeedback k-echofeedback-gui
-ECHO_AMT 0 -9 0 10 -191407 -1 -1 0 1;
+ECHO_AMT 0 -9 0 10 -191407 -1 -1 38800 1;
 #X obj 487 132 vsl 40 400 800 8000 0 0 k-filter k-filter-gui LOWPASS
-0 -9 0 10 -228856 -1 -1 39900 1;
+0 -9 0 10 -228856 -1 -1 4000 1;
 #X obj 576 132 vsl 40 400 16 1 0 0 k-bitcrush k-bitcrush-gui BITCRUSH
 0 -9 0 10 -191407 -1 -1 0 1;
 #X obj 664 132 vsl 40 400 0 1 0 0 k-revmix k-revmix-gui REVERB 0 -9
-0 10 -228856 -1 -1 0 1;
+0 10 -228856 -1 -1 4300 1;
 #X coords 0 -1 1 1 625 450 2 100 100;
 #X restore 41 118 pd vsliders;
 #N canvas 0 50 884 336 radio-controls 0;
 #X obj 101 101 cnv 15 623 63 empty empty empty 20 12 0 14 -128992 -66577
 0;
 #X obj 313 118 hradio 40 1 0 4 k-soundbank k-soundbank-gui SOUNDBANK
-0 -8 0 10 -4034 -1 -1 0;
+0 -8 0 10 -4034 -1 -1 2;
 #X obj 516 118 hradio 40 1 0 5 k-harmony k-harmony-gui HARMONY 0 -8
 0 10 -4034 -1 -1 1;
 #X obj 109 118 hradio 40 1 0 4 k-tempo k-tempo-gui TEMPO 0 -8 0 10
--4034 -1 -1 3;
+-4034 -1 -1 2;
 #X coords 0 -1 1 1 625 65 2 100 100;
 #X restore 40 40 pd radio-controls;
 #N canvas 411 167 506 137 fine-tune 0;

@@ -46,13 +46,13 @@
 #X restore 286 199 pd echo;
 #N canvas 387 178 861 448 harmonies 0;
 #X msg 355 302 \; harmony 0 44 56 60 63 65 68 70 72;
-#X msg 356 265 \; harmony 0 48 55 60 62 64 67 69 72;
+#X msg 455 137 \; harmony 0 48 55 60 62 64 67 69 72;
 #X obj 357 197 loadbang;
 #X obj 30 129 table harmony 8;
 #X obj 228 119 inlet;
 #X obj 237 383 s harmony-changed;
 #X obj 221 148 t b f;
-#X text 576 272 C Major Pentatonic;
+#X text 675 144 C Major Pentatonic;
 #X text 576 314 Ab Major Pentatonic;
 #X msg 355 338 \; harmony 0 41 48 53 58 60 65 69 72;
 #X text 579 351 F Major Chord (Bb added);
@@ -61,12 +61,12 @@
 #X text 574 235 Eb Major Pentatonic;
 #X text 576 381 E Pentatonic;
 #X msg 358 229 \; harmony 0 46 48 55 60 63 65 67 70;
-#X connect 2 0 15 0;
+#X connect 2 0 1 0;
 #X connect 4 0 6 0;
 #X connect 6 0 5 0;
 #X connect 6 1 11 0;
-#X connect 11 0 15 0;
-#X connect 11 1 1 0;
+#X connect 11 0 1 0;
+#X connect 11 1 15 0;
 #X connect 11 2 0 0;
 #X connect 11 3 9 0;
 #X connect 11 4 12 0;
@@ -281,7 +281,7 @@
 #X obj 303 199 s k-revmix-gui;
 #X obj 25 122 unpack f f f f f f f f f f;
 #X obj 221 54 netsend;
-#X obj 221 79 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 221 79 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 222 25 inlet;
 #X obj 25 98 route /snapper;
@@ -708,7 +708,7 @@
 #X connect 5 0 2 1;
 #X connect 6 0 5 2;
 #X restore 358 350 pd vocode;
-#N canvas 640 330 262 437 turing-machine 0;
+#N canvas 640 330 262 437 turing-machine 1;
 #X obj 86 18 r \$0-metro;
 #X obj 81 268 outlet;
 #N canvas 450 136 850 367 register-shift 0;
@@ -732,33 +732,33 @@
 0 1;
 #X msg 386 218 \; \$3-tog-\$2 \$1;
 #X obj 66 101 tgl 15 0 nada \$0-tog-1 empty 17 7 0 10 -262144 -1 -1
-1 1;
-#X obj 81 101 tgl 15 0 nada \$0-tog-2 empty 17 7 0 10 -262144 -1 -1
 0 1;
+#X obj 81 101 tgl 15 0 nada \$0-tog-2 empty 17 7 0 10 -262144 -1 -1
+1 1;
 #X obj 96 101 tgl 15 0 nada \$0-tog-3 empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 111 101 tgl 15 0 nada \$0-tog-4 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 126 101 tgl 15 0 nada \$0-tog-5 empty 17 7 0 10 -262144 -1 -1
-1 1;
-#X obj 141 101 tgl 15 0 nada \$0-tog-6 empty 17 7 0 10 -262144 -1 -1
-1 1;
-#X obj 156 101 tgl 15 0 nada \$0-tog-7 empty 17 7 0 10 -262144 -1 -1
-1 1;
-#X obj 171 101 tgl 15 0 nada \$0-tog-8 empty 17 7 0 10 -262144 -1 -1
 0 1;
+#X obj 141 101 tgl 15 0 nada \$0-tog-6 empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 156 101 tgl 15 0 nada \$0-tog-7 empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 171 101 tgl 15 0 nada \$0-tog-8 empty 17 7 0 10 -262144 -1 -1
+1 1;
 #X obj 186 101 tgl 15 0 nada \$0-tog-9 empty 17 7 0 10 -262144 -1 -1
 1 1;
 #X obj 201 101 tgl 15 0 nada \$0-tog-10 empty 17 7 0 10 -262144 -1
--1 0 1;
-#X obj 216 101 tgl 15 0 nada \$0-tog-11 empty 17 7 0 10 -262144 -1
 -1 1 1;
+#X obj 216 101 tgl 15 0 nada \$0-tog-11 empty 17 7 0 10 -262144 -1
+-1 0 1;
 #X obj 231 101 tgl 15 0 nada \$0-tog-12 empty 17 7 0 10 -262144 -1
 -1 1 1;
 #X obj 246 101 tgl 15 0 nada \$0-tog-13 empty 17 7 0 10 -262144 -1
 -1 0 1;
 #X obj 261 101 tgl 15 0 nada \$0-tog-14 empty 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 276 101 tgl 15 0 nada \$0-tog-15 empty 17 7 0 10 -262144 -1
 -1 0 1;
 #X obj 353 29 t b b;
@@ -855,13 +855,13 @@
 #X msg 400 261 60;
 #X obj 618 165 r \$0-metro;
 #X msg 659 197 bang;
-#X obj 690 232 random 20;
-#X obj 690 254 moses 20;
 #X obj 116 120 t f f;
+#X obj 690 254 moses 50;
+#X obj 690 232 random 50;
 #X connect 1 0 4 0;
 #X connect 2 0 3 0;
 #X connect 3 0 1 1;
-#X connect 4 0 23 0;
+#X connect 4 0 21 0;
 #X connect 4 1 2 0;
 #X connect 7 0 1 0;
 #X connect 7 0 5 0;
@@ -879,11 +879,11 @@
 #X connect 17 0 15 1;
 #X connect 18 0 15 1;
 #X connect 19 0 20 0;
-#X connect 20 0 21 0;
-#X connect 21 0 22 0;
+#X connect 20 0 23 0;
+#X connect 21 0 10 0;
+#X connect 21 1 11 0;
 #X connect 22 0 6 0;
-#X connect 23 0 10 0;
-#X connect 23 1 11 0;
+#X connect 23 0 22 0;
 #X restore 81 181 pd register-shift;
 #X obj 179 152 inlet;
 #X obj 161 9 lockout k-tempo;

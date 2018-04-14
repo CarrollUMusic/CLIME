@@ -369,19 +369,21 @@ mode\$1, f 62;
 #X connect 5 0 2 1;
 #X restore 287 245 pd filter;
 #X obj 83 10 loadbang;
-#N canvas 332 315 201 260 metronome 0;
-#X obj 90 50 inlet;
-#X obj 40 218 s \$0-metro;
-#X obj 128 54 inlet;
-#X obj 40 195 delay 0;
-#X obj 79 172 r k-finetune;
-#X obj 40 149 mod 1;
-#X obj 40 172 sel 0;
-#X obj 40 101 spigot;
-#X obj 128 75 t b f;
-#X obj 128 117 -;
-#X msg 128 96 4;
-#X obj 44 22 abl_link~ 1 0 4 480;
+#N canvas 332 315 250 368 metronome 0;
+#X obj 90 135 inlet;
+#X obj 40 303 s \$0-metro;
+#X obj 128 139 inlet;
+#X obj 40 280 delay 0;
+#X obj 79 257 r k-finetune;
+#X obj 40 234 mod 1;
+#X obj 40 257 sel 0;
+#X obj 40 186 spigot;
+#X obj 128 160 t b f;
+#X obj 128 202 -;
+#X msg 128 181 4;
+#X obj 44 107 abl_link~ 1 0 4 480;
+#X msg 45 83 connect 1;
+#X obj 45 55 loadbang;
 #X connect 0 0 7 1;
 #X connect 2 0 8 0;
 #X connect 3 0 1 0;
@@ -394,6 +396,8 @@ mode\$1, f 62;
 #X connect 9 0 5 1;
 #X connect 10 0 9 0;
 #X connect 11 0 7 0;
+#X connect 12 0 11 0;
+#X connect 13 0 12 0;
 #X restore 583 94 pd metronome;
 #N canvas 336 277 633 409 play-samples 0;
 #X obj 312 256 outlet~;
@@ -957,9 +961,9 @@ mode\$1, f 62;
 1 1;
 #X msg 386 218 \; \$3-tog-\$2 \$1;
 #X obj 66 101 tgl 15 0 nada \$0-tog-1 empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X obj 81 101 tgl 15 0 nada \$0-tog-2 empty 17 7 0 10 -262144 -1 -1
-1 1;
+0 1;
 #X obj 96 101 tgl 15 0 nada \$0-tog-3 empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 111 101 tgl 15 0 nada \$0-tog-4 empty 17 7 0 10 -262144 -1 -1
@@ -967,23 +971,23 @@ mode\$1, f 62;
 #X obj 126 101 tgl 15 0 nada \$0-tog-5 empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 141 101 tgl 15 0 nada \$0-tog-6 empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 156 101 tgl 15 0 nada \$0-tog-7 empty 17 7 0 10 -262144 -1 -1
 1 1;
 #X obj 171 101 tgl 15 0 nada \$0-tog-8 empty 17 7 0 10 -262144 -1 -1
-1 1;
-#X obj 186 101 tgl 15 0 nada \$0-tog-9 empty 17 7 0 10 -262144 -1 -1
 0 1;
+#X obj 186 101 tgl 15 0 nada \$0-tog-9 empty 17 7 0 10 -262144 -1 -1
+1 1;
 #X obj 201 101 tgl 15 0 nada \$0-tog-10 empty 17 7 0 10 -262144 -1
 -1 0 1;
 #X obj 216 101 tgl 15 0 nada \$0-tog-11 empty 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 231 101 tgl 15 0 nada \$0-tog-12 empty 17 7 0 10 -262144 -1
 -1 0 1;
 #X obj 246 101 tgl 15 0 nada \$0-tog-13 empty 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 261 101 tgl 15 0 nada \$0-tog-14 empty 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 276 101 tgl 15 0 nada \$0-tog-15 empty 17 7 0 10 -262144 -1
 -1 0 1;
 #X obj 353 29 t b b;

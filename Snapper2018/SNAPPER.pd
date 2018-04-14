@@ -1,12 +1,12 @@
-#N canvas 255 85 969 620 10;
+#N canvas 224 117 969 620 10;
 #X declare -path internals/rj;
 #X obj -1 0 cnv 15 950 600 empty empty SNAPPER 400 20 0 30 -162280
 -66577 0;
-#N canvas 0 50 423 684 master-controls 0;
+#N canvas 1 81 423 684 master-controls 0;
 #X obj 101 101 cnv 15 201 497 empty empty empty 20 12 0 14 -128992
 -66577 0;
-#X obj 128 203 vsl 40 380 0 0.75 0 0 k-mastervol k-mastervol-gui VOLUME
-0 -9 0 10 -4034 -1 -1 0 1;
+#X obj 128 203 vsl 40 380 0 1 0 0 k-mastervol k-mastervol-gui VOLUME
+0 -9 0 10 -4034 -1 -1 37900 1;
 #X obj 231 461 vu 15 120 pvu-R empty -1 -8 0 10 -66577 -1 0 0;
 #X obj 214 461 vu 15 120 pvu-L empty -1 -8 0 10 -66577 -1 0 0;
 #X obj 206 374 tgl 50 0 k-metro k-metro-gui METRONOME 0 -7 0 10 -4034
@@ -16,19 +16,19 @@
 #X obj 201 197 bng 70 250 50 0 k-broadcast k-broadcast-gui SNAP! 22
 37 0 10 -24198 -33289 -33289;
 #X obj 276 131 tgl 15 0 nada connected CON? 0 -9 0 10 -258699 -33289
--33289 0 1;
+-33289 1 1;
 #X text 126 158 SECS UNTIL YOU CAN SNAP;
 #X coords 0 -1 1 1 203 499 2 100 100;
 #X restore 703 43 pd master-controls;
 #N canvas 244 109 851 614 vsliders 0;
-#X obj 116 132 vsl 40 400 0 20 0 0 k-density k-density-gui EVOLUTION
-0 -9 0 10 -228856 -1 -1 39900 1;
+#X obj 116 132 vsl 40 400 0 20 0 0 k-density k-density-gui VARIATION
+0 -9 0 10 -228856 -1 -1 0 1;
 #X obj 204 132 vsl 40 400 0 1 0 0 k-ringmod k-ringmod-gui VOCODER 0
 -9 0 10 -191407 -1 -1 0 1;
-#X obj 289 130 vradio 67 1 0 6 k-echotime k-echotime-gui ECHO_RATE
-0 -8 0 10 -228856 -1 -1 0;
+#X obj 289 130 vradio 67 1 0 6 k-echotime k-echotime-gui ECHO_LENGTH
+0 -8 0 10 -228856 -1 -1 4;
 #X obj 399 132 vsl 40 400 0 0.95 0 0 k-echofeedback k-echofeedback-gui
-ECHO_AMT 0 -9 0 10 -191407 -1 -1 0 1;
+ECHO_AMT 0 -9 0 10 -191407 -1 -1 35700 1;
 #X obj 487 132 vsl 40 400 800 8000 0 0 k-filter k-filter-gui LOWPASS
 0 -9 0 10 -228856 -1 -1 39900 1;
 #X obj 576 132 vsl 40 400 16 1 0 0 k-bitcrush k-bitcrush-gui BITCRUSH
@@ -37,21 +37,21 @@ ECHO_AMT 0 -9 0 10 -191407 -1 -1 0 1;
 0 10 -228856 -1 -1 0 1;
 #X coords 0 -1 1 1 625 450 2 100 100;
 #X restore 41 118 pd vsliders;
-#N canvas 0 50 884 336 radio-controls 0;
+#N canvas 1 81 884 336 radio-controls 0;
 #X obj 101 101 cnv 15 623 63 empty empty empty 20 12 0 14 -128992 -66577
 0;
 #X obj 313 118 hradio 40 1 0 4 k-soundbank k-soundbank-gui SOUNDBANK
-0 -8 0 10 -4034 -1 -1 2;
+0 -8 0 10 -4034 -1 -1 3;
 #X obj 516 118 hradio 40 1 0 5 k-harmony k-harmony-gui HARMONY 0 -8
 0 10 -4034 -1 -1 1;
-#X obj 109 118 hradio 40 1 0 4 k-tempo k-tempo-gui TEMPO 0 -8 0 10
--4034 -1 -1 2;
+#X obj 111 118 hsl 160 40 1 32 0 0 k-tempo k-tempo-gui DENSITY 0 -8
+0 10 -4034 -1 -1 2800 1;
 #X coords 0 -1 1 1 625 65 2 100 100;
 #X restore 40 40 pd radio-controls;
 #N canvas 411 167 506 137 fine-tune 0;
 #X obj 39 60 hsl 400 30 0 130 0 0 k-finetune empty empty -2 -8 0 10
 -99865 -262144 -1 0 1;
 #X text 89 26 FINE TUNE TIMING - drag to alter beat placement;
-#X restore 699 565 pd fine-tune;
-#X obj 783 565 internals/load-samples;
-#X obj 499 579 declare -path internals/rj;
+#X restore 687 550 pd fine-tune;
+#X obj 771 550 internals/load-samples;
+#X obj 747 573 declare -path internals/rj;

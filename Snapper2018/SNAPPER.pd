@@ -6,7 +6,7 @@
 #X obj 101 101 cnv 15 201 497 empty empty empty 20 12 0 14 -128992
 -66577 0;
 #X obj 128 203 vsl 40 380 0 1 0 0 k-mastervol k-mastervol-gui VOLUME
-0 -9 0 10 -4034 -1 -1 37900 1;
+0 -9 0 10 -4034 -1 -1 14772 1;
 #X obj 231 461 vu 15 120 pvu-R empty -1 -8 0 10 -66577 -1 0 0;
 #X obj 214 461 vu 15 120 pvu-L empty -1 -8 0 10 -66577 -1 0 0;
 #X obj 206 374 tgl 50 0 k-metro k-metro-gui METRONOME 0 -7 0 10 -4034
@@ -21,31 +21,31 @@
 #X coords 0 -1 1 1 203 499 2 100 100;
 #X restore 703 43 pd master-controls;
 #N canvas 244 109 851 614 vsliders 0;
-#X obj 116 132 vsl 40 400 0 50 0 0 k-density k-density-gui VARIATION
-0 -9 0 10 -228856 -1 -1 0 1;
+#X obj 116 132 vsl 40 400 0 10 0 0 k-density k-density-gui VARIATION
+0 -9 0 10 -228856 -1 -1 31731 1;
 #X obj 204 132 vsl 40 400 0 1 0 0 k-ringmod k-ringmod-gui VOCODER 0
--9 0 10 -191407 -1 -1 39900 1;
+-9 0 10 -191407 -1 -1 0 1;
 #X obj 289 130 vradio 67 1 0 6 k-echotime k-echotime-gui ECHO_LENGTH
-0 -8 0 10 -228856 -1 -1 0;
+0 -8 0 10 -228856 -1 -1 6;
 #X obj 399 132 vsl 40 400 0 0.95 0 0 k-echofeedback k-echofeedback-gui
-ECHO_AMT 0 -9 0 10 -191407 -1 -1 33300 1;
+ECHO_AMT 0 -9 0 10 -191407 -1 -1 0 1;
 #X obj 487 132 vsl 40 400 800 8000 0 0 k-filter k-filter-gui LOWPASS
-0 -9 0 10 -228856 -1 -1 39900 1;
+0 -9 0 10 -228856 -1 -1 0 1;
 #X obj 576 132 vsl 40 400 16 1 0 0 k-bitcrush k-bitcrush-gui BITCRUSH
 0 -9 0 10 -191407 -1 -1 0 1;
 #X obj 664 132 vsl 40 400 0 1 0 0 k-revmix k-revmix-gui REVERB 0 -9
-0 10 -228856 -1 -1 9100 1;
+0 10 -228856 -1 -1 0 1;
 #X coords 0 -1 1 1 625 450 2 100 100;
 #X restore 41 118 pd vsliders;
-#N canvas 1 81 884 336 radio-controls 0;
+#N canvas 1 83 884 336 radio-controls 0;
 #X obj 101 101 cnv 15 623 63 empty empty empty 20 12 0 14 -128992 -66577
 0;
 #X obj 313 118 hradio 40 1 0 4 k-soundbank k-soundbank-gui SOUNDBANK
-0 -8 0 10 -4034 -1 -1 1;
+0 -8 0 10 -4034 -1 -1 3;
 #X obj 516 118 hradio 40 1 0 5 k-harmony k-harmony-gui HARMONY 0 -8
-0 10 -4034 -1 -1 4;
+0 10 -4034 -1 -1 0;
 #X obj 111 118 hsl 160 40 1 32 0 0 k-tempo k-tempo-gui DENSITY 0 -8
-0 10 -4034 -1 -1 12400 1;
+0 10 -4034 -1 -1 7694 1;
 #X coords 0 -1 1 1 625 65 2 100 100;
 #X restore 40 40 pd radio-controls;
 #N canvas 411 167 506 137 fine-tune 0;
